@@ -1,0 +1,109 @@
+/* global */
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+body {
+    font-family: 'Georgia', Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    line-height: 1.5;
+}
+@font-face {
+    font-family: 'Georgia';
+    src: url('/shelter/assets/fonts/Georgia.woff2') format('woff2'),
+        url('/shelter/assets/fonts/Georgia.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/shelter/assets/fonts/Georgia-Bold.woff2') format('woff2'),
+        url('/shelter/assets/fonts/Georgia-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/shelter/assets/fonts/Georgia-Italic.woff2') format('woff2'),
+        url('/shelter/assets/fonts/Georgia-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Arial';
+    src: url('/shelter/assets/fonts/ArialMT.woff2') format('woff2'),
+        url('/shelter/assets/fonts/ArialMT.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial';
+    src: url('/shelter/assets/fonts/Arial-ItalicMT.woff2') format('woff2'),
+        url('/shelter/assets/fonts/Arial-ItalicMT.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+.list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.btn-reset {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.flex {
+    display: flex;
+}
+.container {
+    margin: auto;
+    max-width: 1200px;
+}
+
+.background-wrapper{
+    margin: 0;
+    background: url('/shelter/assets/images/start-screen-bg.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+/* header */
