@@ -14,13 +14,13 @@
 <body>
     <div class="background-wrapper">
         <header class="header">
-            <div class="container">
+            <div class="header__container container flex">
                 <a class="header-logo" href="#">
                     <h1 class="header-logo__title">Cozy House</h1>
                     <p class="header-logo__desc">Shelter for pets in&nbsp;Boston</p>
                 </a>
                 <nav class="header-nav">
-                    <ul class="header-nav__list list-reset">
+                    <ul class="header-nav__list flex list-reset">
                         <li class="header-nav__item">
                             <a class="header-nav__link" href="#">About the shelter</a>
                         </li>
@@ -38,20 +38,23 @@
             </div>
         </header>
         <section class="not-only">
-            <div class="not-only__container container">
-                <h2 class="not-only__title">Not only people need a&nbsp;house</h2>
+            <div class="not-only__container container flex">
+                <div class="not-only__wrapper">
+                    <h2 class="not-only__title">Not only people need a&nbsp;house</h2>
                 <p class="not-only__desc">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and nice puppy
                     with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than anybody else
                     in&nbsp;the world, you will see!</p>
                 <button class="btn-reset not-only__btn btn">Make a&nbsp;friend</button>
+                </div>
                 <img src="/shelter/assets/images/not-only.png" alt="puppy">
             </div>
         </section>
     </div>
     <section class="about">
-        <div class="container-about container">
-            <img src="/shelter/assets/images/about.png" alt="dogs_about">
-            <h2 class="about__title title">About the shelter &laquo;Cozy House&raquo;</h2>
+        <div class="container-about container flex">
+            <img class="about__img" src="/shelter/assets/images/about.png" alt="dogs_about">
+            <div class="about__wrapper">
+                <h2 class="about__title title">About the shelter “Cozy House”</h2>
             <p class="about__desc">Currently we&nbsp;have 121 dogs and 342 cats on&nbsp;our hands and statistics
                 show that only&nbsp;20% of&nbsp;them will find a&nbsp;family. The others will continue to&nbsp;live
                 with&nbsp;us and will be&nbsp;waiting for a&nbsp;lucky chance to&nbsp;become dearly loved.</p>
@@ -60,28 +63,43 @@
                 by&nbsp;87&nbsp;volunteers and 28&nbsp;employees of&nbsp;various skill levels. About&nbsp;12%
                 of&nbsp;the animals are taken by&nbsp;the shelter staff. Taking care of&nbsp;the animals, they
                 become attached to&nbsp;the pets and would hardly ever leave them alone.</p>
+            </div>
         </div>
     </section>
     <section class="our-friends">
         <div class="our-friends__container container">
-            <h2 class="our-friends__title title">Our friends who are looking for a&nbsp;house</h2>
-            <ul class="our-friends__content list-reset">
-                <li class="our-friends__item">
-                    <img class="our-friends__img" src="/shelter/assets/images/our-friend1.png" alt="friend1">
-                    <h3 class="our-friends__title">Katrine</h3>
-                    <button class="btn-reset our-friends__item-btn">Learn more</button>
-                </li>
-                <li class="our-friends__item">
-                    <img class="our-friends__img" src="/shelter/assets/images/our-friend2.png" alt="friend2">
-                    <h3 class="our-friends__title">Jennifer</h3>
-                    <button class="btn-reset our-friends__item-btn">Learn more</button>
-                </li>
-                <li class="our-friends__item">
-                    <img class="our-friends__img" src="/shelter/assets/images/our-friend3.png" alt="friend3">
-                    <h3 class="our-friends__title">Woody</h3>
-                    <button class="btn-reset our-friends__item-btn">Learn more</button>
-                </li>
-            </ul>
+            <h2 class="our-friends__title title">Our friends who are&nbsp;looking for a&nbsp;house</h2>
+            <div class="our-friends__wrapper flex">
+                <button class="our-friends__swiper-btn">
+                    <svg width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
+                    </svg>
+                </button>
+                <ul class="our-friends__content list-reset flex">
+                    <li class="our-friends__item">
+                        <img class="our-friends__img" src="/shelter/assets/images/our-friend1.png" alt="friend1">
+                        <h3 class="our-friends__name">Katrine</h3>
+                        <button class="btn-reset our-friends__item-btn">Learn more</button>
+                    </li>
+                    <li class="our-friends__item">
+                        <img class="our-friends__img" src="/shelter/assets/images/our-friend2.png" alt="friend2">
+                        <h3 class="our-friends__name">Jennifer</h3>
+                        <button class="btn-reset our-friends__item-btn">Learn more</button>
+                    </li>
+                    <li class="our-friends__item">
+                        <img class="our-friends__img" src="/shelter/assets/images/our-friend3.png" alt="friend3">
+                        <h3 class="our-friends__name">Woody</h3>
+                        <button class="btn-reset our-friends__item-btn">Learn more</button>
+                    </li>
+                </ul>
+                <button class="our-friends__swiper-btn">
+                    <svg width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z" fill="#292929"/>
+                    </svg>
+                    </svg>
+                </button>
+            </div>
+            <button class="btn-reset our-friends__btn btn">Get to know the rest</button>
         </div>
     </section>
     <section class="help">

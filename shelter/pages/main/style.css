@@ -92,6 +92,28 @@ body {
     background-color: transparent;
     cursor: pointer;
 }
+.btn {
+    padding: 15px 45px;
+    background: #F1CDB3;
+    border-radius: 100px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #292929;
+}
+.title {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 130%;
+    align-items: center;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
 .flex {
     display: flex;
 }
@@ -107,3 +129,172 @@ body {
     background-size:cover;
 }
 /* header */
+
+.header__container {
+    justify-content: space-between;
+    padding-top: 3.5vw;
+}
+.header-logo__title {
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    align-items: center;
+    color: #f1cdb3;
+}
+.header-logo__desc {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+}
+.header-nav {
+    margin: auto 0;
+}
+.header-nav__list {
+    justify-content: space-between;
+    align-items: center;
+}
+.header-nav__item {
+    margin-left: 2.2vw;
+}
+.header-nav__link {
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 15px;
+    color: #CDCDCD;
+}
+/* not-only */
+.not-only__container {
+    padding-top: 3.6vw;
+}
+.not-only__wrapper {
+    padding-top: 10vw;
+    padding-right: 8vh;
+}
+.not-only__title {
+    margin-bottom: 42px;
+    padding-right: 4vw;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 130%;
+    color: #FFFFFF;
+
+}
+.not-only__desc {
+    margin-bottom: 42px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    color: #CDCDCD;
+
+}
+/* about */
+.container-about {
+    padding: 5vw 3vw;
+    padding-bottom: 6vw;
+    justify-content: space-evenly;
+}
+.about__wrapper {
+    max-width: 40%;
+    padding-top: 10px;
+}
+.about__img {
+    max-width: 50%;
+}
+.about__desc {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    color: #4C4C4C;
+}
+.about__desc:not(:last-child) {
+    margin-bottom: 25px;
+}
+.about__title {
+    padding-right: 4vw;
+    margin-bottom: 25px;
+}
+/* our-friends */
+.our-friends {
+    background-color: #F6F6F6;
+}
+.our-friends__container {
+    padding: 5vw 0 6vw 0;
+}
+.our-friends__title {
+    max-width: 25rem;
+    margin: 0 auto 50px auto;
+    text-align: center;
+    color: #545454;
+}
+.our-friends__wrapper {
+    margin-bottom: 60px;
+    justify-content: space-between;
+    align-items: center;
+}
+.our-friends__swiper-btn {
+    width: 52px;
+    height: 52px;
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+}
+.our-friends__content {
+    padding: 0 10px 0 10px;
+    width: 100%;
+    justify-content: space-evenly;
+    column-gap: 4%;
+}
+.our-friends__img {
+    margin-bottom: 30px;
+}
+.our-friends__name {
+    margin-bottom: 27px;
+    text-align: center;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+.our-friends__item {
+    background-color: #FAFAFA;
+}
+.our-friends__item-btn {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 15px 45px;
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #292929;
+}
+.our-friends__btn {
+    display: block;
+    margin: 0 auto;
+    padding: 15px 45px;
+    background: #F1CDB3;
+    border-radius: 100px;
+}
