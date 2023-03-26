@@ -25,13 +25,13 @@
                             <a class="header-nav__link header-nav__link-active" href="#">About the shelter</a>
                         </li>
                         <li class="header-nav__item">
-                            <a class="header-nav__link" href="#">Our pets</a>
+                            <a class="header-nav__link" href="../pets/index.html">Our pets</a>
                         </li>
                         <li class="header-nav__item">
-                            <a class="header-nav__link" href="#">Help the shelter</a>
+                            <a class="header-nav__link" href="#help">Help the shelter</a>
                         </li>
                         <li class="header-nav__item">
-                            <a class="header-nav__link" href="#">Contacts</a>
+                            <a class="header-nav__link" href="#footer">Contacts</a>
                         </li>
                     </ul>
                 </nav>
@@ -44,7 +44,7 @@
                 <p class="not-only__desc">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and nice puppy
                     with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than anybody else
                     in&nbsp;the world, you will see!</p>
-                <button class="btn-reset not-only__btn btn">Make a&nbsp;friend</button>
+                <a href="#our-friends" class="not-only__btn btn">Make a&nbsp;friend</a>
                 </div>
                 <img src="../../assets/images/not-only.png" alt="puppy">
             </div>
@@ -66,7 +66,7 @@
             </div>
         </div>
     </section>
-    <section class="our-friends">
+    <section class="our-friends" id="our-friends">
         <div class="our-friends__container container">
             <h2 class="our-friends__title title">Our friends who are&nbsp;looking for a&nbsp;house</h2>
             <div class="our-friends__wrapper flex">
@@ -96,13 +96,14 @@
                     <svg width="14" height="10" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z" fill="#292929"/>
                     </svg>
-                    </svg>
                 </button>
             </div>
-            <button class="btn-reset our-friends__btn btn">Get to know the rest</button>
+            <div class="our-friends__btn-wrapper flex">
+                <a href="../pets/index.html" class="our-friends__btn btn flex">Get to know the rest</a>
+            </div>
         </div>
     </section>
-    <section class="help">
+    <section class="help" id="help">
         <div class="help__container container">
             <h2 class="help__title title">How you can help our shelter</h2>
             <ul class="help__content flex list-reset">
@@ -162,13 +163,13 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="footer__container container flex">
             <div class="footer__info flex">
                 <div class="footer__left">
                     <h2 class="footer-left__title">For questions and suggestions</h2>
                     <address class="footer-left__address">
-                        <a href="#" class="mail flex">
+                        <a href="mailto:email@shelter.com" class="mail flex">
                             <svg class="mail__svg" width="40" height="26" viewBox="0 0 40 26" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -180,7 +181,7 @@
                             </svg>
                             <p class="mail__text">email@shelter.com</p>
                         </a>
-                        <a href="#" class="phone flex">
+                        <a href="tel:+136745677554" class="phone flex">
                             <svg class="phone__svg" width="40" height="32" viewBox="0 0 40 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -203,7 +204,7 @@
                 <div class="footer__center">
                     <h2 class="footer-center__title">We&nbsp;are waiting for your visit</h2>
                     <address class="footer-center__address flex">
-                        <a href="#" class="location flex">
+                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank" class="location flex">
                             <svg class="location__svg" width="22" height="32" viewBox="0 0 22 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -215,7 +216,7 @@
                             </svg>
                             <p class="location__text">1&nbsp;Central Street, Boston (entrance from the store)</p>
                         </a>
-                        <a href="#" class="location flex">
+                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank" class="location flex">
                             <svg class="location__svg" width="22" height="32" viewBox="0 0 22 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -235,6 +236,7 @@
             </div>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 
 </html>
