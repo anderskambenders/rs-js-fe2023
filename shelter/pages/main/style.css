@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-size: 10px;
 }
 *,
 *::before,
@@ -35,8 +36,6 @@ img {
 }
 body {
     font-family: 'Georgia', Arial, Helvetica, sans-serif;
-    scroll-behavior: smooth;
-    line-height: 1.5;
 }
 @font-face {
     font-family: 'Georgia';
@@ -100,7 +99,7 @@ body {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 17px;
+    font-size: 1.7rem;
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #292929;
@@ -113,7 +112,7 @@ body {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 3.5rem;
     line-height: 130%;
     align-items: center;
     letter-spacing: 0.06em;
@@ -138,13 +137,13 @@ body {
 
 .header__container {
     justify-content: space-between;
-    padding-top: 3.5vw;
+    padding-top: 6rem;
 }
 .header-logo__title {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     font-family: 'Georgia', serif;
     font-weight: normal;
-    font-size: 2rem;
+    font-size: 3.2rem;
     line-height: 110%;
     letter-spacing: 0.06em;
     align-items: center;
@@ -154,8 +153,8 @@ body {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
     display: flex;
     align-items: center;
     letter-spacing: 0.1em;
@@ -169,12 +168,12 @@ body {
     align-items: center;
 }
 .header-nav__item {
-    margin-left: 2.2vw;
+    margin-left: 3.6rem;
 }
 .header-nav__link {
     font-family: 'Arial';
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #CDCDCD;
     transition: color 0.3s ease-in-out;
 }
@@ -188,29 +187,29 @@ body {
 }
 /* not-only */
 .not-only__container {
-    padding-top: 3.6vw;
+    padding-top: 5.5rem;
 }
 .not-only__wrapper {
-    padding-top: 10vw;
-    padding-right: 8vh;
+    padding-top: 17rem;
+    padding-right: 3rem;
 }
 .not-only__title {
-    margin-bottom: 42px;
-    padding-right: 4vw;
+    margin-bottom: 4.2rem;
+    padding-right: 7rem;
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 44px;
+    font-size: 4.4rem;
     line-height: 130%;
     color: #FFFFFF;
 
 }
 .not-only__desc {
-    margin-bottom: 3.3vw;
+    margin-bottom: 5.3rem;
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 160%;
     display: flex;
     align-items: center;
@@ -219,13 +218,13 @@ body {
 
 /* about */
 .container-about {
-    padding: 5vw;
-    padding-bottom: 6vw;
+    padding: 8rem;
+    padding-bottom: 10rem;
     justify-content: space-evenly;
 }
 .about__wrapper {
     max-width: 40%;
-    padding-top: 10px;
+    padding-top: 2rem;
 }
 .about__img {
     max-width: 50%;
@@ -234,32 +233,32 @@ body {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 160%;
     color: #4C4C4C;
 }
 .about__desc:not(:last-child) {
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem;
 }
 .about__title {
-    padding-right: 4vw;
-    margin-bottom: 25px;
+    padding-right: 4rem;
+    margin-bottom: 2.5rem;
 }
 /* our-friends */
 .our-friends {
     background-color: #F6F6F6;
 }
 .our-friends__container {
-    padding: 4.5vw 1.1vw 6vw 1.1vw;
+    padding: 8.5rem 2rem 9.5rem 1.7rem;
 }
 .our-friends__title {
-    max-width: 25rem;
-    margin: 0 auto 60px auto;
+    max-width: 40rem;
+    margin: 0 auto 6rem auto;
     text-align: center;
     color: #545454;
 }
 .our-friends__wrapper {
-    margin-bottom: 60px;
+    margin-bottom: 5.9rem;
     justify-content: space-between;
     align-items: center;
 }
@@ -287,15 +286,15 @@ body {
     column-gap: 4%;
 }
 .our-friends__img {
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem;
 }
 .our-friends__name {
-    margin-bottom: 27px;
+    margin-bottom: 3rem;
     text-align: center;
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 23px;
     letter-spacing: 0.06em;
     color: #545454;
@@ -312,7 +311,7 @@ body {
 }
 .our-friends__item-btn {
     display: block;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 3rem auto;
     padding: 15px 45px;
     border: 2px solid #F1CDB3;
     border-radius: 100px;
@@ -341,11 +340,11 @@ body {
 
 /* help */
 .help__container {
-    padding: 4.7vw 2vw 6vw;
+    padding: 8.2rem 4rem 10rem;
 }
 .help__title {
-    max-width: 20rem;
-    margin: 0 auto 55px auto;
+    max-width: 35rem;
+    margin: 0 auto 5.8rem auto;
     text-align: center;
     color: #545454;
 }
@@ -353,8 +352,8 @@ body {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    column-gap: 7.2vw;
-    row-gap: 3.2vw;
+    column-gap: 12rem;
+    row-gap: 5rem;
 }
 .help__item {
     display: flex;
@@ -372,7 +371,7 @@ body {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 130%;
     text-align:center;
     letter-spacing: 0.06em;
@@ -383,14 +382,14 @@ body {
     background-color: #F6F6F6;
 }
 .in-addition__container {
-    padding: 4.6vw 2vw 6vw 10vw;
+    padding: 8.2rem 4rem 10rem 16rem;
     justify-content: space-between;
 }
 .in-addition__img {
     padding-top: 10px;
     padding-bottom: 10px;
     flex-shrink: 0;
-    margin-right: 25px;
+    margin-right: 3rem;
 }
 
 .in-addition__title {
@@ -398,17 +397,17 @@ body {
     margin-bottom: 18px;
 }
 .in-addition__sub {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 110%;
     letter-spacing: 0.06em;
     color: #545454;
 }
 .in-addition__link {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     width: 349px;
     justify-content: space-between;
     align-items: center;
@@ -449,13 +448,13 @@ body {
 
 }
 .footer__container {
-    padding: 2.3vw 1vw 0 1.2vw;
+    padding: 4.2rem 2rem 0 2rem;
     justify-content: space-between;
 }
 .footer__info {
     width: 62%;
     justify-content: space-between;
-    padding-top: 1vw;
+    padding-top: 1.8rem;
 }
 .footer__left {
     width: 40%;
