@@ -1,5 +1,6 @@
 /* global */
 html {
+    font-size: 10px;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
@@ -109,7 +110,7 @@ body {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 3.5rem;
     line-height: 130%;
     align-items: center;
     letter-spacing: 0.06em;
@@ -127,7 +128,7 @@ body {
 
 .header__container {
     justify-content: space-between;
-    padding-top: 1.8vw;
+    padding-top: 3rem;
     padding-bottom: 2vw;
     background-color: #FFFFFF;
 }
@@ -136,7 +137,7 @@ body {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 3.2rem;
     line-height: 110%;
     letter-spacing: 0.06em;
     color: #545454;
@@ -146,7 +147,7 @@ body {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 1.3rem;
     line-height: 15px;
     letter-spacing: 0.1em;
     color: #292929;
@@ -159,13 +160,13 @@ body {
     align-items: center;
 }
 .header-nav__item {
-    margin-left: 2.2vw;
+    margin-left: 3.7rem;
 }
 .header-nav__link {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 160%;
     color: #545454;
     transition: color 0.3s ease-in-out;
@@ -183,22 +184,22 @@ body {
     background-color: #F6F6F6;
 }
 .our-friends__container {
-    padding: 4.5vw 1.1vw 5.8vw 1.1vw;
+    padding: 7.7rem 2rem 10rem 2rem;
 }
 .our-friends__title {
-    max-width: 25rem;
-    margin: 0 auto 60px auto;
+    max-width: 40rem;
+    margin: 0 auto 6rem auto;
     text-align: center;
     color: #545454;
 }
 .our-friends__content {
-    margin-bottom: 3.5vw;
+    margin-bottom: 5.5rem;
     flex-wrap: wrap;
     justify-content: space-between;
-    row-gap: 30px;
+    row-gap: 3rem;
 }
 .our-friends__item {
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
     border-radius: 9px;
     cursor: pointer;
     background-color: #FAFAFA;
@@ -209,15 +210,15 @@ body {
     box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 .our-friends__img {
-    margin-bottom: 22px;
+    margin-bottom: 2.2rem;
 }
 .our-friends__content-title {
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
     text-align: center;
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 23px;
     letter-spacing: 0.06em;
     color: #545454;
@@ -243,7 +244,7 @@ body {
 }
 .pagination {
     justify-content: center;
-    column-gap: 18px;
+    column-gap: 1.8rem;
 }
 .pagination__btn {
     width: 52px;
@@ -281,13 +282,13 @@ body {
     background-size:cover;
 }
 .footer__container {
-    padding: 2.3vw 1vw 0 1.2vw;
+    padding: 4.2rem 2rem 0 2rem;
     justify-content: space-between;
 }
 .footer__info {
     width: 62%;
     justify-content: space-between;
-    padding-top: 1vw;
+    padding-top: 1.8rem;
 }
 .footer__left {
     width: 40%;
