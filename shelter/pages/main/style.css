@@ -137,7 +137,8 @@ body {
 
 .header__container {
     justify-content: space-between;
-    padding-top: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 .header-logo__title {
     margin-bottom: 1rem;
