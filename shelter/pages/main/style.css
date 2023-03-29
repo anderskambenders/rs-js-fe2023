@@ -160,6 +160,12 @@ body {
     letter-spacing: 0.1em;
     color: #FFFFFF;
 }
+.header-logo__title {
+    transition: all 0.3s ease-in-out;
+}
+.header-logo:hover > .header-logo__title {
+    color: #FDDCC4;
+}
 .header-nav {
     margin: auto 0;
 }
@@ -493,7 +499,20 @@ body {
     line-height: 115%;
     letter-spacing: 0.06em;
     color: #F1CDB3;
+    transition: all 0.3s ease-in-out;
 
+}
+.location__text, .mail__text, .phone__text {
+    transition: all 0.3s ease-in-out;
+}
+.location:hover > .location__text {
+    color:#FDDCC4
+}
+.mail:hover > .mail__text {
+    color: #FDDCC4;
+}
+.phone:hover > .phone__text {
+    color: #FDDCC4;
 }
 .mail {
     margin-bottom: 43px;
