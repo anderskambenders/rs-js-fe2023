@@ -141,6 +141,7 @@ body {
     line-height: 110%;
     letter-spacing: 0.06em;
     color: #545454;
+    transition: all 0.3s ease-in-out;
 }
 .header-logo__desc {
     padding-left: 2px;
@@ -151,6 +152,12 @@ body {
     line-height: 15px;
     letter-spacing: 0.1em;
     color: #292929;
+}
+.header-logo {
+    transition: all 0.3s ease-in-out;
+}
+.header-logo:hover > .header-logo__title {
+    color: #F1CDB3
 }
 .header-nav {
     margin: auto 0;
@@ -327,6 +334,18 @@ body {
     letter-spacing: 0.06em;
     color: #F1CDB3;
 
+}
+.location__text, .mail__text, .phone__text {
+    transition: all 0.3s ease-in-out;
+}
+.location:hover > .location__text {
+    color:#FDDCC4
+}
+.mail:hover > .mail__text {
+    color: #FDDCC4;
+}
+.phone:hover > .phone__text {
+    color: #FDDCC4;
 }
 .mail {
     margin-bottom: 43px;
