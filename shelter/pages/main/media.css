@@ -56,5 +56,38 @@
         max-width: 80%;
         align-self: flex-end;
     }
-
+    /* about */
+    .container-about {
+        padding-top: 6rem;
+        padding-bottom: 10rem;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .about__wrapper {
+        margin-bottom: 7.4rem;
+        max-width: 61%;
+    }
+    /* our-friends */
+    .our-friends__container {
+        padding-top: 8.2rem;
+        padding-bottom: 10rem;
+    }
+    .our-friends__item:last-child {
+        display: none;
+    }
+    /* help */
+    .help__container {
+        padding-top: 8rem;
+        padding-bottom: 10rem;
+    }
+    .help__content {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        justify-content: space-between;
+        column-gap: 7rem;
+    }
+    .help__item {
+        flex: 0 1 calc(170/708 * 100%);
+    }
 }
