@@ -140,6 +140,9 @@ body {
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
+.burger {
+    display: none;
+}
 .header-logo__title {
     margin-bottom: 1rem;
     font-family: 'Georgia', serif;
@@ -438,7 +441,7 @@ body {
     color: #545454;
 }
 .in-addition__desc {
-    width: 70%;
+    max-width: 70%;
     font-family: 'Arial';
     font-style: italic;
     font-weight: 400;
@@ -461,15 +464,15 @@ body {
     justify-content: space-between;
 }
 .footer__info {
-    width: 62%;
+    max-width: 62%;
     justify-content: space-between;
     padding-top: 1.8rem;
 }
 .footer__left {
-    width: 40%;
+    max-width: 40%;
 }
 .footer__center {
-    width: 41%;
+    max-width: 41%;
 }
 
 .footer-left__title,
