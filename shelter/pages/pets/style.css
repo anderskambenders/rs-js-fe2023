@@ -159,6 +159,10 @@ body {
 .header-logo:hover > .header-logo__title {
     color: #F1CDB3
 }
+.burger {
+    display: none;
+    cursor: pointer;
+}
 .header-nav {
     margin: auto 0;
 }
@@ -167,7 +171,7 @@ body {
     align-items: center;
 }
 .header-nav__item {
-    margin-left: 3.7rem;
+    margin-left: 3.6rem;
 }
 .header-nav__link {
     font-family: 'Arial';
@@ -179,6 +183,7 @@ body {
     transition: color 0.3s ease-in-out;
 }
 .header-nav__link-active {
+    cursor: default;
     padding-bottom: 3px;
     color: #292929;
     border-bottom: 3px solid #F1CDB3;
@@ -265,6 +270,7 @@ body {
     letter-spacing: 0.06em;
 }
 .pagination__not-active {
+    cursor: default;
     color: #CDCDCD;
     border: 2px solid #CDCDCD;
 }
@@ -293,15 +299,15 @@ body {
     justify-content: space-between;
 }
 .footer__info {
-    width: 62%;
+    max-width: 62%;
     justify-content: space-between;
     padding-top: 1.8rem;
 }
 .footer__left {
-    width: 40%;
+    max-width: 40%;
 }
 .footer__center {
-    width: 41%;
+    max-width: 41%;
 }
 
 .footer-left__title,
