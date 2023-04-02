@@ -92,11 +92,11 @@
     }
     /* in-addition */
     .in-addition__container {
-        padding-bottom: 0;
+        padding-bottom: 9.5rem;
         padding-top: 8.2rem;
     }
     .in-addition__info {
-        margin-bottom: 3.5rem;
+        margin-bottom: 5.3rem;
         padding-left: 9.2rem;
     }
     .in-addition__title {
@@ -245,6 +245,7 @@
         padding: 4.3rem 2.1rem 3.5rem;
     }
     .in-addition__info {
+        margin-bottom: 3.5rem;
         max-width: 100%;
         padding-left: 0;
     }
