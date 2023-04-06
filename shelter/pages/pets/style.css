@@ -163,6 +163,20 @@ body {
     display: none;
     cursor: pointer;
 }
+.burger__line {
+    margin-bottom: 8px;
+    width: 30px;
+    border: 1px solid #000000;
+}
+.burger-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
 .header-nav {
     margin: auto 0;
 }
