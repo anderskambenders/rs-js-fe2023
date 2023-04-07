@@ -291,6 +291,34 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.carousel-wrapper {
+    display: flex;
+    width: 990px;
+    overflow: hidden;
+}
+.carousel {
+    display: flex;
+    position: relative;
+    left: -990px;
+}
+@keyframes move-right {
+    from {left: -990px;}
+    to {left: -1980px;}
+    }
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 2s;
+}
+@keyframes move-left {
+    from {left: -990px;}
+    to {left: 0px;}
+}
+
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 2s;
+}
+
 .our-friends__swiper-btn {
     width: 53px;
     height: 50px;
@@ -309,11 +337,12 @@ body {
     border: 2px solid #FDDCC4;
 }
 .our-friends__content {
-    padding: 0 10px 0 10px;
-    width: 100%;
-    justify-content: space-evenly;
-    column-gap: 4%;
+    gap: 90px;
+    display: flex;
+    padding-bottom: 20px;
+    margin: 0;
 }
+
 .our-friends__img {
     margin-bottom: 2.5rem;
 }
@@ -329,6 +358,7 @@ body {
     color: #545454;
 }
 .our-friends__item {
+    min-width: 270px;
     border-radius:  9px ;
     cursor: pointer;
     background-color: #FAFAFA;
