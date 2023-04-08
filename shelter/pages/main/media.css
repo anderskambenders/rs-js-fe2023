@@ -69,13 +69,30 @@
         max-width: 61%;
     }
     /* our-friends */
+    @keyframes move-right {
+        from {left: -640px;}
+        to {left: -1260px;}
+    }
+    @keyframes move-left {
+        from {left: -640px;}
+        to {left: -20px;}
+    }
     .our-friends__container {
         padding-top: 8.2rem;
         padding-bottom: 10rem;
     }
-    .our-friends__item:last-child {
-        display: none;
+    .our-friends__content {
+        width:580px;
+        gap:40px;
+        margin: 0 20px;
     }
+    .carousel-wrapper {
+        width: 580px;
+    }
+    .carousel {
+        left: -640px;
+    }
+
     /* help */
     .help__container {
         padding-top: 8rem;
@@ -232,6 +249,14 @@
         max-width: 100%;
     }
     /* our-friends */
+    @keyframes move-right {
+        from {left: -330px;}
+        to {left: -640px;}
+    }
+    @keyframes move-left {
+        from {left: -330px;}
+        to {left: -20px;}
+    }
     .our-friends__container {
         padding: 4.5rem 1rem 4rem;
     }
@@ -239,19 +264,28 @@
         max-width: 100%;
         margin-bottom: 4rem;
     }
-    .our-friends__item:nth-child(2) {
-        display: none;
-    }
+
     .our-friends__wrapper {
+        width: 280px;
+        padding: 5px;
+        margin: 42px auto 42px;
+        gap: 0px;
         margin-bottom: 4.5rem;
         flex-wrap: wrap;
         justify-content: space-evenly;
+    }
+    .carousel-wrapper {
+        width:270px;
+    }
+    .carousel {
+        left: -330px;
     }
     .previous-btn {
         margin-right: 1.5rem;
         order: 2;
     }
     .our-friends__content {
+        width:270px;
         margin-bottom: 2rem;
         order:1
     }
