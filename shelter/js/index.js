@@ -9,7 +9,7 @@ const dataList = [
         "inoculations": ["none"],
         "diseases": ["none"],
         "parasites": ["none"],
-        id:'0',
+        id: '0',
     },
     {
         "name": "Sophia",
@@ -21,7 +21,7 @@ const dataList = [
         "inoculations": ["parvovirus"],
         "diseases": ["none"],
         "parasites": ["none"],
-        id:'1',
+        id: '1',
     },
     {
         "name": "Woody",
@@ -33,7 +33,7 @@ const dataList = [
         "inoculations": ["adenovirus", "distemper"],
         "diseases": ["right back leg mobility reduced"],
         "parasites": ["none"],
-        id:'2',
+        id: '2',
     },
     {
         "name": "Scarlett",
@@ -45,7 +45,7 @@ const dataList = [
         "inoculations": ["parainfluenza"],
         "diseases": ["none"],
         "parasites": ["none"],
-        id:'3',
+        id: '3',
     },
     {
         "name": "Katrine",
@@ -57,7 +57,7 @@ const dataList = [
         "inoculations": ["panleukopenia"],
         "diseases": ["none"],
         "parasites": ["none"],
-        id:'4',
+        id: '4',
     },
     {
         "name": "Timmy",
@@ -69,7 +69,7 @@ const dataList = [
         "inoculations": ["calicivirus", "viral rhinotracheitis"],
         "diseases": ["kidney stones"],
         "parasites": ["none"],
-        id:'5',
+        id: '5',
     },
     {
         "name": "Freddie",
@@ -81,7 +81,7 @@ const dataList = [
         "inoculations": ["rabies"],
         "diseases": ["none"],
         "parasites": ["none"],
-        id:'6',
+        id: '6',
     },
     {
         "name": "Charly",
@@ -93,7 +93,7 @@ const dataList = [
         "inoculations": ["bordetella bronchiseptica", "leptospirosis"],
         "diseases": ["deafness", "blindness"],
         "parasites": ["lice", "fleas"],
-        id:'7',
+        id: '7',
     }]
 
 
@@ -104,39 +104,39 @@ const carouselWrapper = document.querySelector(".carousel-wrapper");
 let itemLeft = document.querySelector(".item-left");
 let itemRight = document.querySelector(".item-right");
 let itemActive = document.querySelector(".item-active");
-let itemsVisible=3;
+let itemsVisible = 3;
 let carouselSize = getComputedStyle(carousel);
-let device='desktop';
-if (carouselSize.width == '580px') {device='tablet'; itemsVisible=2;}
-else if (carouselSize.width == '270px') {itemsVisible=1; device='mobile';}
+let device = 'desktop';
+if (carouselSize.width == '580px') { device = 'tablet'; itemsVisible = 2; }
+else if (carouselSize.width == '270px') { itemsVisible = 1; device = 'mobile'; }
 
 //for adaptive and counting cards
-window.addEventListener('resize',  ()=>{
+window.addEventListener('resize', () => {
     let newDevice;
-        if (carouselSize.width == '990px') {
-            newDevice='desktop';
-            itemsVisible=3;
+    if (carouselSize.width == '990px') {
+        newDevice = 'desktop';
+        itemsVisible = 3;
     }
-        else if (carouselSize.width == '580px') {
-            itemsVisible=2;
-            newDevice='tablet';
+    else if (carouselSize.width == '580px') {
+        itemsVisible = 2;
+        newDevice = 'tablet';
     }
-        else if (carouselSize.width == '270px'){
-            itemsVisible=1;
-            newDevice='mobile';
-        }
-        if(device!==newDevice){
-            device=newDevice;
-            firstOpen(itemsVisible);
-        }
-    })
+    else if (carouselSize.width == '270px') {
+        itemsVisible = 1;
+        newDevice = 'mobile';
+    }
+    if (device !== newDevice) {
+        device = newDevice;
+        firstOpen(itemsVisible);
+    }
+})
 // func for card generation
 const createCardTemplate = (cardId) => {
     let card = document.createElement("li");
     card.classList.add("our-friends__item");
-    card.id=cardId
-    dataList.forEach((pet)=>{
-        if(pet.id==cardId){
+    card.id = cardId
+    dataList.forEach((pet) => {
+        if (pet.id == cardId) {
             let template = '';
             template += `<img class="our-friends__img" src=${pet.img} alt="pet-card">`;
             template += `<h3 class="our-friends__name">${pet.name}</h3>`;
@@ -145,33 +145,35 @@ const createCardTemplate = (cardId) => {
         }
     });
     return card;
-    }
+}
 // on start screen
-let arrowId=[];
-itemActive.innerHTML='';
-for(let i=0; i<itemsVisible; i++){
+let arrowId = [];
+itemActive.innerHTML = '';
+for (let i = 0; i < itemsVisible; i++) {
     let rand = String(Math.floor(Math.random() * 8));
     if (!arrowId.includes(rand)) {
         arrowId.push(rand);
-        let card=createCardTemplate(arrowId[i].toString());
+        let card = createCardTemplate(arrowId[i].toString());
         itemActive.append(card)
     } else {
         i--;
-    }}
+    }
+}
 //next massive generators
-function arrFinder () {
-    let arrowId=[];
-    for (let i=0; i<itemsVisible; i++) {
-    arrowId.push(itemActive.children[i].id);}
-    const arrowIdNext =[];
-    for (let i=0; i<itemsVisible; i++) {
-    let rand = String(Math.floor(Math.random() * 8));
-    if (!arrowId.includes(rand) && !arrowIdNext.includes(rand)) {
-        arrowIdNext.push(rand);
-    } else {i=i-1;}
+function arrFinder() {
+    let arrowId = [];
+    for (let i = 0; i < itemsVisible; i++) {
+        arrowId.push(itemActive.children[i].id);
+    }
+    const arrowIdNext = [];
+    for (let i = 0; i < itemsVisible; i++) {
+        let rand = String(Math.floor(Math.random() * 8));
+        if (!arrowId.includes(rand) && !arrowIdNext.includes(rand)) {
+            arrowIdNext.push(rand);
+        } else { i = i - 1; }
     }
     return arrowIdNext;
-    }
+}
 // functions for moving left and right
 //add animation onclick and generate next massive
 // while animation during btn is disabled
@@ -180,16 +182,17 @@ const moveLeft = () => {
     carousel.classList.add("transition-left");
     changedItem = itemLeft;
     changedItem.innerHTML = "";
-        let arrNext = arrFinder();
-        for (let i = 0; i < itemsVisible; i++) {
+    let arrNext = arrFinder();
+    for (let i = 0; i < itemsVisible; i++) {
         let cardId = arrNext[i];
         let card = createCardTemplate(cardId);
         changedItem.appendChild(card);
-    btnLeft.removeEventListener("click", moveLeft);
-    btnRight.removeEventListener("click", moveRight);
-    }}
+        btnLeft.removeEventListener("click", moveLeft);
+        btnRight.removeEventListener("click", moveRight);
+    }
+}
 
-    const moveRight = () => {
+const moveRight = () => {
     let changedItem;
     carousel.classList.add("transition-right");
     changedItem = itemRight;
@@ -199,9 +202,10 @@ const moveLeft = () => {
         let cardId = arrNext[i];
         let card = createCardTemplate(cardId);
         changedItem.appendChild(card);
-    btnLeft.removeEventListener("click", moveLeft);
-    btnRight.removeEventListener("click", moveRight);
-    }}
+        btnLeft.removeEventListener("click", moveLeft);
+        btnRight.removeEventListener("click", moveRight);
+    }
+}
 
 btnLeft.addEventListener('click', moveLeft);
 btnRight.addEventListener('click', moveRight);
@@ -211,10 +215,10 @@ carousel.addEventListener("animationend", (animationEvent) => {
     if (animationEvent.animationName === "move-left") {
         carousel.classList.remove("transition-left");
         document.querySelector(".item-active").innerHTML = itemLeft.innerHTML;
-        } else {
+    } else {
         carousel.classList.remove("transition-right");
         document.querySelector(".item-active").innerHTML = itemRight.innerHTML;
-        }
+    }
     btnLeft.addEventListener("click", moveLeft);
     btnRight.addEventListener("click", moveRight);
-    })
+})

@@ -45,7 +45,7 @@
         <section class="our-friends">
             <div class="our-friends__container container">
                 <h2 class="our-friends__title title">Our friends&nbsp;who are&nbsp;looking for a&nbsp;house</h2>
-                <ul class="our-friends__content list-reset flex">
+                <ul class="our-friends__content list-reset">
                     <li class="our-friends__item">
                         <img src="../../assets/images/our-friend1.png" alt="friend1" class="our-friends__img">
                         <h3 class="our-friends__content-title">Katrine</h3>
@@ -87,12 +87,13 @@
                         <button class="our-friends__btn btn-reset">Learn more</button>
                     </li>
                 </ul>
+                <ul class="our-friends__next hidden list-reset"></ul>
                 <div class="pagination flex">
-                    <button class="pagination__btn pagination__not-active btn-reset" disabled> &lt;&lt; </button>
-                    <button class="pagination__btn pagination__not-active btn-reset" disabled> &lt; </button>
-                    <button class="pagination__btn pagination__chosen btn-reset">1</button>
-                    <button class="pagination__btn pagination__active btn-reset"> &gt; </button>
-                    <button class="pagination__btn pagination__active btn-reset"> &gt;&gt; </button>
+                    <button class="pagination__btn pagination__not-active btn-reset start-btn" disabled> &lt;&lt; </button>
+                    <button class="pagination__btn pagination__not-active btn-reset prev-btn" disabled> &lt; </button>
+                    <button class="pagination__btn pagination__chosen btn-reset current-btn">1</button>
+                    <button class="pagination__btn pagination__not-active pagination__active btn-reset next-btn"> &gt; </button>
+                    <button class="pagination__btn pagination__not-active pagination__active btn-reset last-btn"> &gt;&gt; </button>
                 </div>
             </div>
         </section>
@@ -171,5 +172,6 @@
         </div>
     </footer>
     <script src="../../js/burger.js"></script>
+    <script src="../../js/pets.js"></script>
 </body>
 </html>

@@ -218,11 +218,17 @@ body {
     text-align: center;
     color: #545454;
 }
-.our-friends__content {
-    margin-bottom: 5.5rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 3rem;
+
+.our-friends__content, .our-friends__next {
+    display: grid;
+    grid-template-columns: repeat(4, 270px);
+    column-gap: 40px;
+    row-gap: 30px;
+    margin: 45px 0;
+    padding: 15px 0;
+}
+.hidden {
+    display: none;
 }
 .our-friends__item {
     padding-bottom: 3rem;
@@ -383,4 +389,12 @@ body {
 .phone__svg {
     margin-right: 20px;
     flex-shrink: 0;
+}
+@keyframes item-anim {
+    from {opacity: 0}
+    to {opacity:1}
+}
+.item-anim {
+    animation-name: item-anim;
+    animation-duration: 1s;
 }
