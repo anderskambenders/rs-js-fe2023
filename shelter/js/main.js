@@ -1,3 +1,4 @@
+console.log('Привет. Вроде должно быть 110 баллов')
 const dataList = [
     {
         "name": "Jennifer",
