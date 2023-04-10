@@ -127,7 +127,6 @@ window.addEventListener('resize', () => {
     }
     if (device !== newDevice) {
         device = newDevice;
-        firstOpen(itemsVisible);
     }
 })
 // func for card generation
@@ -211,6 +210,23 @@ btnLeft.addEventListener('click', moveLeft);
 btnRight.addEventListener('click', moveRight);
 
 
+
+
+let items = document.querySelectorAll('.our-friends__item');
+let popup = document.querySelector('.popup');
+let popupOverlay = document.querySelector('.popup-overlay');
+let popupBtn = document.querySelector('.popup-btn')
+let popupImg = document.querySelector('.popup-img__scr');
+let popupName = document.querySelector('.popup-name');
+let popupType = document.querySelector('.popup-type');
+let popupDesc = document.querySelector('.popup-desc');
+let popupAge = document.querySelector('.popup-age');
+let popupInoc = document.querySelector('.popup-inoculations');
+let popupDis = document.querySelector('.popup-diseases');
+let popupParas = document.querySelector('.popup-parasites');
+
+
+
 carousel.addEventListener("animationend", (animationEvent) => {
     if (animationEvent.animationName === "move-left") {
         carousel.classList.remove("transition-left");
@@ -221,4 +237,40 @@ carousel.addEventListener("animationend", (animationEvent) => {
     }
     btnLeft.addEventListener("click", moveLeft);
     btnRight.addEventListener("click", moveRight);
+    let items = document.querySelectorAll('.our-friends__item');
+    popUp(items)
+
 })
+
+function popUp(items) {items.forEach( item => {
+    item.addEventListener('click', () => {
+        dataList.forEach( pet => {
+            if (pet.id===item.id){
+                popupImg.src = pet.img;
+                popupName.innerHTML=pet.name;
+                popupType.innerHTML= `${pet.type}  ${pet.breed}`;
+                popupDesc.innerHTML =  pet.description;
+                popupAge.innerHTML = `<b>Age:</b> ${pet.age}`;
+                popupInoc.innerHTML = `<b>Inoculations:</b> ${pet.inoculations}`;
+                popupDis.innerHTML = `<b>Diseases:</b> ${pet.diseases}`;
+                popupParas.innerHTML = `<b>Parasites:</b> ${pet.parasites}`;
+            }
+        } )
+        popupOverlay.classList.remove('hidden')
+        document.body.style.overflow = "hidden";
+
+    })
+    })
+    popupBtn.addEventListener('click', () => {
+    popupOverlay.classList.add('hidden')
+    document.body.style.overflow = "";
+    })
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target.classList[0] === 'popup-overlay') {
+    popupOverlay.classList.add('hidden')
+    document.body.style.overflow = "";}
+    })
+
+
+}
+popUp(items)

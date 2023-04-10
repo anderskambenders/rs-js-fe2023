@@ -16,6 +16,25 @@
         justify-self: flex-end;
         max-width: 100% ;
     }
+    .popup {
+        width: 630px;
+        height: 350px;
+    }
+    .popup-img {
+        width: 400px;
+        height: 100%;
+    }
+    .popup-info {
+        padding: 0;
+    }
+    .popup-type {
+        margin-bottom: 10px;
+    }
+    .popup-desc {
+        margin-bottom: 10px;
+        font-size: 13px;
+        line-height: 110%;
+    }
 }
 @media (max-width: 1140px) {
     .container {
@@ -378,5 +397,13 @@
     }
     .footer__right {
         max-width: 26rem;
+    }
+    .popup {
+        padding: 5px 3px;
+        width: 270px;
+        height: 360px;
+    }
+    .popup-img {
+        display: none;
     }
 }
