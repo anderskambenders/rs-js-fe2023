@@ -11,6 +11,32 @@
     <link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
 </head>
 <body>
+    <div class="popup-overlay hidden">
+        <div class="popup">
+            <button class="popup-btn">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.42618 6.00003L11.7046 1.72158C12.0985 1.32775 12.0985 0.689213 11.7046 0.295433C11.3108 -0.0984027 10.6723 -0.0984027 10.2785 0.295433L5.99998 4.57394L1.72148 0.295377C1.32765 -0.098459 0.68917 -0.098459 0.295334 0.295377C-0.0984448 0.689213 -0.0984448 1.32775 0.295334 1.72153L4.57383 5.99997L0.295334 10.2785C-0.0984448 10.6723 -0.0984448 11.3108 0.295334 11.7046C0.68917 12.0985 1.32765 12.0985 1.72148 11.7046L5.99998 7.42612L10.2785 11.7046C10.6723 12.0985 11.3108 12.0985 11.7046 11.7046C12.0985 11.3108 12.0985 10.6723 11.7046 10.2785L7.42618 6.00003Z"
+                        fill="#292929" />
+                </svg>
+            </button>
+            <div class="popup-img"><img class="popup-img__scr" src="../../assets/images/our-friend2.png" alt="pet"></div>
+            <div class="popup-info">
+                <h4 class="popup-name">Jennifer</h4>
+                <p class="popup-type">Dog - Labrador</p>
+                <p class="popup-desc">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new
+                    forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate
+                    to play up a storm in the house if she has all of her favorite toys.</p>
+                <ul class="popup-other">
+                    <li class="popup-other__item popup-age">Age: 2 months</li>
+                    <li class="popup-other__item popup-inoculations">Inoculations: none</li>
+                    <li class="popup-other__item popup-diseases">Diseases: none</li>
+                    <li class="popup-other__item popup-parasites">Parasites: none</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
     <header class="header">
         <div class="header__container container flex">
             <a class="header-logo" href="../main/index.html">
@@ -18,11 +44,9 @@
                 <p class="header-logo__desc">Shelter for pets in&nbsp;Boston</p>
             </a>
             <div class="burger">
-                <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line y1="21" x2="30" y2="21" stroke="black" stroke-width="2"/>
-                    <line y1="11" x2="30" y2="11" stroke="black" stroke-width="2"/>
-                    <line y1="1" x2="30" y2="1" stroke="black" stroke-width="2"/>
-                    </svg>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
             </div>
             <nav class="header-nav flex list-reset">
                 <ul class="header-nav__list flex list-reset">
@@ -40,13 +64,14 @@
                     </li>
                 </ul>
             </nav>
+            <div class="burger-overlay"></div>
         </div>
     </header>
     <main>
         <section class="our-friends">
             <div class="our-friends__container container">
                 <h2 class="our-friends__title title">Our friends&nbsp;who are&nbsp;looking for a&nbsp;house</h2>
-                <ul class="our-friends__content list-reset flex">
+                <ul class="our-friends__content list-reset">
                     <li class="our-friends__item">
                         <img src="../../assets/images/our-friend1.png" alt="friend1" class="our-friends__img">
                         <h3 class="our-friends__content-title">Katrine</h3>
@@ -88,12 +113,13 @@
                         <button class="our-friends__btn btn-reset">Learn more</button>
                     </li>
                 </ul>
+                <ul class="our-friends__next hidden list-reset"></ul>
                 <div class="pagination flex">
-                    <button class="pagination__btn pagination__not-active btn-reset" disabled> &lt;&lt; </button>
-                    <button class="pagination__btn pagination__not-active btn-reset" disabled> &lt; </button>
-                    <button class="pagination__btn pagination__chosen btn-reset">1</button>
-                    <button class="pagination__btn pagination__active btn-reset"> &gt; </button>
-                    <button class="pagination__btn pagination__active btn-reset"> &gt;&gt; </button>
+                    <button class="pagination__btn pagination__not-active btn-reset start-btn" disabled> &lt;&lt; </button>
+                    <button class="pagination__btn pagination__not-active btn-reset prev-btn" disabled> &lt; </button>
+                    <button class="pagination__btn pagination__chosen btn-reset current-btn">1</button>
+                    <button class="pagination__btn pagination__not-active pagination__active btn-reset next-btn"> &gt; </button>
+                    <button class="pagination__btn pagination__not-active pagination__active btn-reset last-btn"> &gt;&gt; </button>
                 </div>
             </div>
         </section>
@@ -171,5 +197,7 @@
             </div>
         </div>
     </footer>
+    <script src="../../js/burger.js"></script>
+    <script src="../../js/pets.js"></script>
 </body>
 </html>
