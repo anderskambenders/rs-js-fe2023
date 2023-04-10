@@ -11,7 +11,34 @@
     <link rel="stylesheet" href="media.css">
     <link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
 </head>
+
 <body>
+    <div class="popup-overlay hidden">
+        <div class="popup">
+            <button class="popup-btn">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.42618 6.00003L11.7046 1.72158C12.0985 1.32775 12.0985 0.689213 11.7046 0.295433C11.3108 -0.0984027 10.6723 -0.0984027 10.2785 0.295433L5.99998 4.57394L1.72148 0.295377C1.32765 -0.098459 0.68917 -0.098459 0.295334 0.295377C-0.0984448 0.689213 -0.0984448 1.32775 0.295334 1.72153L4.57383 5.99997L0.295334 10.2785C-0.0984448 10.6723 -0.0984448 11.3108 0.295334 11.7046C0.68917 12.0985 1.32765 12.0985 1.72148 11.7046L5.99998 7.42612L10.2785 11.7046C10.6723 12.0985 11.3108 12.0985 11.7046 11.7046C12.0985 11.3108 12.0985 10.6723 11.7046 10.2785L7.42618 6.00003Z"
+                        fill="#292929" />
+                </svg>
+            </button>
+            <div class="popup-img"><img class="popup-img__scr" src="../../assets/images/our-friend2.png" alt="pet"></div>
+            <div class="popup-info">
+                <h4 class="popup-name">Jennifer</h4>
+                <p class="popup-type">Dog - Labrador</p>
+                <p class="popup-desc">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new
+                    forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate
+                    to play up a storm in the house if she has all of her favorite toys.</p>
+                <ul class="popup-other">
+                    <li class="popup-other__item popup-age">Age: 2 months</li>
+                    <li class="popup-other__item popup-inoculations">Inoculations: none</li>
+                    <li class="popup-other__item popup-diseases">Diseases: none</li>
+                    <li class="popup-other__item popup-parasites">Parasites: none</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="background-wrapper">
         <header class="header">
             <div class="header__container container flex">
@@ -20,11 +47,9 @@
                     <p class="header-logo__desc">Shelter for pets in&nbsp;Boston</p>
                 </a>
                 <div class="burger">
-                    <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="21" x2="30" y2="21" stroke="#F1CDB3" stroke-width="2"/>
-                        <line y1="11" x2="30" y2="11" stroke="#F1CDB3" stroke-width="2"/>
-                        <line y1="1" x2="30" y2="1" stroke="#F1CDB3" stroke-width="2"/>
-                        </svg>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
                 </div>
                 <nav class="header-nav">
                     <ul class="header-nav__list flex list-reset">
@@ -42,15 +67,18 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="burger-overlay"></div>
             </div>
         </header>
         <section class="not-only">
             <div class="not-only__container container flex">
                 <div class="not-only__wrapper">
                     <h2 class="not-only__title">Not only people need&nbsp;a&nbsp;house</h2>
-                <p class="not-only__desc">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and nice puppy
-                    with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than anybody else
-                    in&nbsp;the world, you will see!</p>
+                    <p class="not-only__desc">We&nbsp;offer to&nbsp;give a&nbsp;chance to&nbsp;a&nbsp;little and nice
+                        puppy
+                        with an&nbsp;extremely wide and open heart. He&nbsp;or&nbsp;she will love you more than anybody
+                        else
+                        in&nbsp;the world, you will see!</p>
                     <div class="wrapper__btn">
                         <a href="#our-friends" class="not-only__btn btn">Make a&nbsp;friend</a>
                     </div>
@@ -64,14 +92,14 @@
             <img class="about__img" src="../../assets/images/about.png" alt="dogs_about">
             <div class="about__wrapper">
                 <h2 class="about__title title">About the shelter “Cozy House”</h2>
-            <p class="about__desc">Currently we have 121 dogs and 342 cats on our hands and statistics
-                show that only 20% of them will find a family. The others will continue to live
-                with us and will be waiting for a lucky chance to become dearly loved.</p>
-            <p class="about__desc">We feed our wards with the best food and make sure that they do not get
-                sick, feel comfortable (including psychologically) and well. We are supported
-                by 87 volunteers and 28 employees of various skill levels. About 12%
-                of the animals are taken by the shelter staff. Taking care of the animals, they
-                become attached to the pets and would hardly ever leave them alone.</p>
+                <p class="about__desc">Currently we have 121 dogs and 342 cats on our hands and statistics
+                    show that only 20% of them will find a family. The others will continue to live
+                    with us and will be waiting for a lucky chance to become dearly loved.</p>
+                <p class="about__desc">We feed our wards with the best food and make sure that they do not get
+                    sick, feel comfortable (including psychologically) and well. We are supported
+                    by 87 volunteers and 28 employees of various skill levels. About 12%
+                    of the animals are taken by the shelter staff. Taking care of the animals, they
+                    become attached to the pets and would hardly ever leave them alone.</p>
             </div>
         </div>
     </section>
@@ -81,29 +109,70 @@
             <div class="our-friends__wrapper flex">
                 <button class="our-friends__swiper-btn previous-btn btn-reset">
                     <svg width="14" height="10" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
+                        <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929" />
                     </svg>
                 </button>
-                <ul class="our-friends__content list-reset flex">
-                    <li class="our-friends__item">
-                        <img class="our-friends__img" src="../../assets/images/our-friend1.png" alt="friend1">
-                        <h3 class="our-friends__name">Katrine</h3>
-                        <button class="btn-reset our-friends__item-btn">Learn more</button>
-                    </li>
-                    <li class="our-friends__item">
-                        <img class="our-friends__img" src="../../assets/images/our-friend2.png" alt="friend2">
-                        <h3 class="our-friends__name">Jennifer</h3>
-                        <button class="btn-reset our-friends__item-btn">Learn more</button>
-                    </li>
-                    <li class="our-friends__item">
-                        <img class="our-friends__img" src="../../assets/images/our-friend3.png" alt="friend3">
-                        <h3 class="our-friends__name">Woody</h3>
-                        <button class="btn-reset our-friends__item-btn">Learn more</button>
-                    </li>
-                </ul>
+                <div class="carousel-wrapper">
+                    <div class="carousel">
+                        <ul class="our-friends__content item-left list-reset flex">
+                            <li class="our-friends__item" id="1">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend4.png"
+                                    alt="friend1">
+                                <h3 class="our-friends__name">Sophia</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                            <li class="our-friends__item" id="3">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend7.png"
+                                    alt="friend2">
+                                <h3 class="our-friends__name">Scarlett</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                            <li class="our-friends__item" id="5">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend5.png"
+                                    alt="friend3">
+                                <h3 class="our-friends__name">Timmy</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                        </ul>
+                        <ul class="our-friends__content item-active list-reset flex">
+                            <li class="our-friends__item" id="4">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend1.png"
+                                    alt="friend1">
+                                <h3 class="our-friends__name">Katrine</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                            <li class="our-friends__item" id="0">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend2.png"
+                                    alt="friend2">
+                                <h3 class="our-friends__name">Jennifer</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                            <li class="our-friends__item" id="2">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend3.png"
+                                    alt="friend3">
+                                <h3 class="our-friends__name">Woody</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                        </ul>
+                        <ul class="our-friends__content item-right list-reset flex">
+                            <li class="our-friends__item" id="6">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend8.png"
+                                    alt="friend3">
+                                <h3 class="our-friends__name">Freddie</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                            <li class="our-friends__item" id="7">
+                                <img class="our-friends__img"  src="../../assets/images/our-friend6.png"
+                                    alt="friend1">
+                                <h3 class="our-friends__name">Charly</h3>
+                                <button class="btn-reset our-friends__item-btn">Learn more</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <button class="our-friends__swiper-btn next-btn btn-reset">
                     <svg width="14" height="10" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z" fill="#292929"/>
+                        <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z" fill="#292929" />
                     </svg>
                 </button>
             </div>
@@ -160,7 +229,8 @@
             <img class="in-addition__img" src="../../assets/images/in-add.png" alt="puppy-donation">
             <div class="in-addition__info">
                 <h2 class="in-addition__title title">You can also make&nbsp;a&nbsp;donation</h2>
-                <p class="in-addition__sub">Name&nbsp;of&nbsp;the&nbsp;bank&nbsp;/&nbsp;Type&nbsp;of&nbsp;bank&nbsp;account</p>
+                <p class="in-addition__sub">
+                    Name&nbsp;of&nbsp;the&nbsp;bank&nbsp;/&nbsp;Type&nbsp;of&nbsp;bank&nbsp;account</p>
                 <a href="#" class="in-addition__link flex">
                     <img class="in-addition__card" src="../../assets/images/credit-card.png" alt="card">
                     <p class="in-addition__num">8380&nbsp;2880&nbsp;8028&nbsp;8791&nbsp;7435</p>
@@ -213,7 +283,8 @@
                 <div class="footer__center">
                     <h2 class="footer-center__title">We&nbsp;are waiting for your visit</h2>
                     <address class="footer-center__address flex">
-                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank" class="location flex">
+                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank"
+                            class="location flex">
                             <svg class="location__svg" width="22" height="32" viewBox="0 0 22 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -223,9 +294,11 @@
                                     d="M11 5.33329C7.9674 5.33329 5.50008 7.72585 5.50008 10.6666C5.50008 13.6074 7.9674 16 11 16C14.0327 16 16.5 13.6074 16.5 10.6667C16.5 7.72592 14.0327 5.33329 11 5.33329ZM11 14.6667C8.72537 14.6667 6.87505 12.8724 6.87505 10.6667C6.87505 8.46092 8.72537 6.66667 11 6.66667C13.2747 6.66667 15.125 8.46092 15.125 10.6667C15.125 12.8724 13.2747 14.6667 11 14.6667Z"
                                     fill="#F1CDB3" />
                             </svg>
-                            <p class="location__text">1&nbsp;Central Street, Boston (entrance&nbsp;from&nbsp;the&nbsp;store)</p>
+                            <p class="location__text">1&nbsp;Central Street, Boston
+                                (entrance&nbsp;from&nbsp;the&nbsp;store)</p>
                         </a>
-                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank" class="location flex">
+                        <a href="https://google.com/maps/@53.718879,27.986709,7z?hl=en" target="_blank"
+                            class="location flex">
                             <svg class="location__svg" width="22" height="32" viewBox="0 0 22 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -245,6 +318,8 @@
             </div>
         </div>
     </footer>
-    <script src="index.js"></script>
+    <script src="../../js/burger.js"></script>
+    <script src='../../js/main.js'></script>
 </body>
+
 </html>
