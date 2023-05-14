@@ -1,0 +1,20 @@
+window.addEventListener('DOMContentLoaded', () => {
+  const container = document.createElement('main');
+  container.classList.add('container');
+  document.body.append(container);
+  const title = document.createElement('h1');
+  title.classList.add('title');
+  title.innerHTML = 'MINESWEEPER';
+  container.append(title);
+  const gameArea = document.createElement('section');
+  gameArea.classList.add('game-area');
+  container.append(gameArea);
+  const gameMenu = document.createElement('div');
+  gameMenu.classList.add('game-menu');
+  gameArea.append(gameMenu);
+  const difficulty = document.createElement('div');
+  difficulty.classList.add('difficulty');
+  gameMenu.append(difficulty);
+  difficulty.innerHTML = '<button class="difficulty__btn">Easy</button> <button class="difficulty__btn">Medium</button> <button class="difficulty__btn">Hard</button>';
+  difficulty.innerHTML += ' <label class="difficulty__label" for="mines-input"> Mines <input class="difficulty__input" id="mines-input" type="number"></label>';
+});
