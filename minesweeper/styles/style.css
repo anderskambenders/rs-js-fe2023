@@ -1,6 +1,7 @@
 body {
   background-color: #0D8584;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  box-sizing: border-box;
 }
 
 .container {
@@ -27,12 +28,89 @@ body {
 }
 
 .game-menu {
-    background-color: #D3CEC4;
-    border: none;
-    text-align: left;
-    padding: 2px 8px;
+  display: flex;
+  padding: 24px 24px 0;
+  background-color: lightgray;
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid gray;
 }
-.difficulty {
+
+.menu__wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: 5px solid grey;
+  border-left: 5px solid grey;
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+}
+
+.game__mines-cnt,
+.menu__timer {
+    font: 400 52px Georgia;
+    font-family: 'Digital Dismay';
+    color: red;
+    background-color: black;
+}
+
+.game__btn {
+  text-align: center;
+  border: none;
+  width: 72px;
+  height: 72px;
+  font-size: 54px;
+  margin: 0;
+  padding: 0;
+  border-top: 6px solid white;
+  border-left: 6px solid white;
+  border-bottom: 6px solid gray;
+  border-right: 6px solid gray;
+  font: 400 50px serif;
+
+}
+
+.game__main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: lightgray;
+    border-left: 5px solid white;
+    border-bottom: 5px solid gray;
+    border-right: 5px solid gray;
+}
+
+.game__field {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  position: relative;
+  box-sizing: border-box;
+  border-top: 5px solid grey;
+  border-left: 5px solid grey;
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+  position: relative;
+}
+.cell {
+  height: 30px;
+  width: 30px;
+  background-color: #C0C0C0;
+  border: 1.5px solid;
+  border-top-color: #ffffff;
+  border-right-color: #7B7B7B;
+  border-bottom-color: #7B7B7B;
+  border-left-color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+}
+/* .difficulty {
   display: flex;
   justify-content: space-between;
 }
@@ -49,4 +127,4 @@ body {
 .difficulty__input {
   width: 40px;
   margin-left: 5px;
-}
+} */
