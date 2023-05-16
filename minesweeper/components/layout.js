@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/extensions
-import createTable from './table.js';
-
 function createLayuot() {
   const container = document.createElement('main');
   container.classList.add('container');
@@ -41,7 +38,6 @@ function createLayuot() {
   const gameField = document.createElement('div');
   gameField.classList.add('game__field');
   main.append(gameField);
-  createTable(gameField);
 }
 
 export default createLayuot;

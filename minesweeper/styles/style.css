@@ -110,6 +110,27 @@ body {
   text-align: center;
   vertical-align: middle;
 }
+.checked {
+  background-color: #C0C0C0;
+  font-size: 80%;
+  text-align: center;
+  border: none;
+}
+.one {
+  color: #e76346 !important;
+}
+
+.two {
+  color: #4199d3 !important;
+}
+
+.three {
+  color: #57da59 !important;
+}
+
+.four{
+  color: #bb41d3 !important;
+}
 /* .difficulty {
   display: flex;
   justify-content: space-between;
