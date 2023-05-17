@@ -38,6 +38,9 @@ function createLayuot() {
   const gameField = document.createElement('div');
   gameField.classList.add('game__field');
   main.append(gameField);
+  const message = document.createElement('p');
+  message.classList.add('message');
+  main.append(message);
 }
 
 export default createLayuot;

@@ -10,6 +10,16 @@ window.addEventListener('DOMContentLoaded', () => {
   let flags = 0;
   const cells = [];
   let gameOver = false;
+  let gameCnt = 0;
+  let moves = 0;
+  let timer = 0;
+  let isStart = false;
+  const timerWidget = document.querySelector('.menu__timer');
+  const mineCounter = document.querySelector('.game__mines-cnt');
+  const message = document.querySelector('.message');
+  mineCounter.innerHTML = `0${bombsNumber.toString()}`;
+
+
 
   function addFlag(cell) {
     if (gameOver) return;
@@ -110,10 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
       cells.push(cell);
 
       cell.addEventListener('click', () => {
+        moves += 1;
         openCell(cell);
       });
       cell.addEventListener('contextmenu', (target) => {
         target.preventDefault();
+        moves += 1;
         addFlag(cell);
       });
     }
@@ -145,6 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
         cell.classList.add('checked');
       }
     });
+    message.innerHTML = 'Game Over! Try again!';
   }
   function checkForWin() {
     let matches = 0;
@@ -154,8 +167,29 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       if (matches === bombsNumber) {
         gameOver = true;
+        message.innerHTML = `Hooray! You found all mines in ${timer} seconds and ${moves} moves!`;
       }
     }
   }
+
+  function setTimer() {
+    setTimeout(() => {
+      if (!gameOver) {
+        timer += 1;
+        timerWidget.textContent = timer.toString().padStart(3, 0);
+        setTimer();
+      }
+    }, 1000);
+  }
+
   createTable();
+  gameField.addEventListener('click', (cell) => {
+    if (!isStart) {
+      isStart = true;
+      setTimer();
+    }
+    if (cells.includes(cell.target)) {
+      openCell(cell.target);
+    }
+  });
 });

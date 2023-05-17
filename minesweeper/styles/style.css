@@ -76,7 +76,8 @@ body {
 
 .game__main {
     display: flex;
-    flex-direction: row;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     padding: 24px;
     box-sizing: border-box;
@@ -90,7 +91,6 @@ body {
   display: grid;
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
-  position: relative;
   box-sizing: border-box;
   border-top: 5px solid grey;
   border-left: 5px solid grey;
@@ -98,9 +98,16 @@ body {
   border-right: 5px solid white;
   position: relative;
 }
+
+.message {
+  left: 15%;
+  font-size: 34px;
+  position: absolute;
+}
+
 .cell {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   background-color: #C0C0C0;
   border: 1.5px solid;
   border-top-color: #ffffff;
