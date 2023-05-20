@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const height = 10;
   const bombsNumber = 10;
   let flags = 0;
-  const cells = [];
+  let cells = [];
   let gameOver = false;
   let gameCnt = 0;
   let moves = 0;
@@ -18,8 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const mineCounter = document.querySelector('.game__mines-cnt');
   const message = document.querySelector('.message');
   mineCounter.innerHTML = `0${bombsNumber.toString()}`;
-
-
 
   function addFlag(cell) {
     if (gameOver) return;
@@ -89,9 +87,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentId = cell.id;
     if (gameOver) return;
     if (cell.classList.contains('checked') || cell.classList.contains('flag')) return;
-    if (cell.classList.contains('bomb')) {
+    if (cell.classList.contains('bomb') && moves !== 1) {
       gameEnd(cell);
-    } else {
+    } else if (cell.classList.contains('valid')) {
       const total = cell.getAttribute('data');
       if (+total !== 0) {
         cell.classList.add('checked');
@@ -103,8 +101,8 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
       }
       checkSquare(cell, currentId);
+      cell.classList.add('checked');
     }
-    cell.classList.add('checked');
   }
 
   function createTable() {
@@ -184,12 +182,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
   createTable();
   gameField.addEventListener('click', (cell) => {
-    if (!isStart) {
-      isStart = true;
-      setTimer();
-    }
-    if (cells.includes(cell.target)) {
-      openCell(cell.target);
+    if (cell.target.classList.contains('bomb') && moves === 1) {
+      console.log(moves);
+      gameField.innerHTML = '';
+      moves = 0;
+      cells = [];
+      createTable();
+      openCell(cells[cell.target.id]);
+      moves += 1;
+      console.log(moves);
+    } else {
+      if (!isStart) {
+        isStart = true;
+        setTimer();
+      }
+      if (cells.includes(cell.target)) {
+        console.log(cell);
+        openCell(cell.target);
+      }
     }
   });
 });
