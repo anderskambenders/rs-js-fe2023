@@ -4,13 +4,13 @@ import createLayuot from './components/layout.js';
 window.addEventListener('DOMContentLoaded', () => {
   createLayuot();
   const gameField = document.querySelector('.game__field');
+  const newGameBtn = document.querySelector('.game__btn');
   const width = 10;
   const height = 10;
   const bombsNumber = 10;
   let flags = 0;
   let cells = [];
   let gameOver = false;
-  let gameCnt = 0;
   let moves = 0;
   let timer = 0;
   let isStart = false;
@@ -18,6 +18,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const mineCounter = document.querySelector('.game__mines-cnt');
   const message = document.querySelector('.message');
   mineCounter.innerHTML = `0${bombsNumber.toString()}`;
+
+  const clickSnd = new Audio('assets/sounds/click.mp3');
+  clickSnd.volume = 0.1;
 
   function addFlag(cell) {
     if (gameOver) return;
@@ -84,6 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCell(cell) {
+    clickSnd.play();
     const currentId = cell.id;
     if (gameOver) return;
     if (cell.classList.contains('checked') || cell.classList.contains('flag')) return;
@@ -148,6 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function gameEnd(cell) {
     gameOver = true;
+    isStart = false;
     cells.forEach(cell => {
       if (cell.classList.contains('bomb')) {
         cell.innerHTML = '💣';
@@ -165,6 +170,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       if (matches === bombsNumber) {
         gameOver = true;
+        isStart = false;
         message.innerHTML = `Hooray! You found all mines in ${timer} seconds and ${moves} moves!`;
       }
     }
@@ -172,7 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function setTimer() {
     setTimeout(() => {
-      if (!gameOver) {
+      if (isStart) {
         timer += 1;
         timerWidget.textContent = timer.toString().padStart(3, 0);
         setTimer();
@@ -181,7 +187,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   createTable();
-  gameField.addEventListener('click', (cell) => {
+
+  const cellHandler = (cell) => {
     if (cell.target.classList.contains('bomb') && moves === 1) {
       console.log(moves);
       gameField.innerHTML = '';
@@ -192,7 +199,7 @@ window.addEventListener('DOMContentLoaded', () => {
       moves += 1;
       console.log(moves);
     } else {
-      if (!isStart) {
+      if (!isStart && timer === 0) {
         isStart = true;
         setTimer();
       }
@@ -201,5 +208,19 @@ window.addEventListener('DOMContentLoaded', () => {
         openCell(cell.target);
       }
     }
+  };
+
+  newGameBtn.addEventListener('click', () => {
+    gameField.innerHTML = '';
+    moves = 0;
+    isStart = false;
+    gameOver = false;
+    timer = 0;
+    timerWidget.textContent = '000';
+    cells = [];
+    message.innerHTML = '';
+    createTable();
   });
+
+  gameField.addEventListener('click', cellHandler);
 });
