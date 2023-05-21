@@ -21,9 +21,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const clickSnd = new Audio('assets/sounds/click.mp3');
   clickSnd.volume = 0.1;
+  const flagSnd = new Audio('assets/sounds/flag.mp3');
+  flagSnd.volume = 0.1;
+  const winSnd = new Audio('assets/sounds/win.mp3');
+  winSnd.volume = 0.1;
+  const loseSnd = new Audio('assets/sounds/lose.mp3');
+  loseSnd.volume = 0.1;
 
   function addFlag(cell) {
     if (gameOver) return;
+    flagSnd.play();
     if (!cell.classList.contains('checked') && (flags < bombsNumber)) {
       if (!cell.classList.contains('flag')) {
         cell.classList.add('flag');
@@ -160,6 +167,7 @@ window.addEventListener('DOMContentLoaded', () => {
         cell.classList.add('checked');
       }
     });
+    loseSnd.play();
     message.innerHTML = 'Game Over! Try again!';
   }
   function checkForWin() {
@@ -171,6 +179,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (matches === bombsNumber) {
         gameOver = true;
         isStart = false;
+        winSnd.play();
         message.innerHTML = `Hooray! You found all mines in ${timer} seconds and ${moves} moves!`;
       }
     }
