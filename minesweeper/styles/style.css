@@ -24,16 +24,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 520px;
+  width: 500px;
 }
 
 .game-menu {
   display: flex;
   padding: 24px 24px 0;
   background-color: lightgray;
-  border-top: 5px solid white;
-  border-left: 5px solid white;
-  border-right: 5px solid gray;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid gray;
 }
 
 .menu__wrapper {
@@ -44,18 +44,20 @@ body {
   align-items: center;
   padding: 16px;
   box-sizing: border-box;
-  border-top: 5px solid grey;
-  border-left: 5px solid grey;
-  border-bottom: 5px solid white;
-  border-right: 5px solid white;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
 }
 
 .game__mines-cnt,
 .menu__timer {
-    font: 400 52px Georgia;
-    font-family: 'Digital Dismay';
-    color: red;
-    background-color: black;
+  padding-left: 4px;
+  padding-right: 4px;
+  font: 400 52px Georgia;
+  font-family: 'Digital Dismay';
+  color: red;
+  background-color: black;
 }
 
 .game__btn {
@@ -66,12 +68,16 @@ body {
   font-size: 54px;
   margin: 0;
   padding: 0;
-  border-top: 6px solid white;
-  border-left: 6px solid white;
-  border-bottom: 6px solid gray;
-  border-right: 6px solid gray;
+  border-top: 4px solid white;
+  border-left: 4px solid white;
+  border-bottom: 4px solid gray;
+  border-right: 4px solid gray;
   font: 400 50px serif;
+  cursor: pointer;
+}
 
+.game__btn:active {
+  border: none;
 }
 
 .game__main {
@@ -82,9 +88,9 @@ body {
     padding: 24px;
     box-sizing: border-box;
     background-color: lightgray;
-    border-left: 5px solid white;
-    border-bottom: 5px solid gray;
-    border-right: 5px solid gray;
+    border-left: 3px solid white;
+    border-bottom: 3px solid gray;
+    border-right: 3px solid gray;
 }
 
 .game__field {
@@ -92,20 +98,41 @@ body {
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
   box-sizing: border-box;
-  border-top: 5px solid grey;
-  border-left: 5px solid grey;
-  border-bottom: 5px solid white;
-  border-right: 5px solid white;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
   position: relative;
 }
 
-.message {
-  left: 15%;
-  font-size: 34px;
-  position: absolute;
+.game__result {
+  padding: 25px;
+  padding-top: 5px;
+  display: flex;
+  background-color: lightgray;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.result__title {
+  align-self: center;
+  font-size: 30px;
+}
+
+.game__message {
+  font-size: 25px;
+  align-self: center;
 }
 
 .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 40px;
   background-color: #C0C0C0;
@@ -119,7 +146,7 @@ body {
 }
 .checked {
   background-color: #C0C0C0;
-  font-size: 80%;
+  font-size: 100%;
   text-align: center;
   border: none;
 }
@@ -138,21 +165,22 @@ body {
 .four{
   color: #bb41d3 !important;
 }
-/* .difficulty {
-  display: flex;
-  justify-content: space-between;
-}
-.difficulty__btn {
-  width: calc((100% / 4) - 5px );
-}
 
-.difficulty__label {
-  display: flex;
-  align-items: center;
-  
+@media (min-width: 768px) {
+  .container {
+    margin-top: 10px;
+  }
+  .game-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 600px;
+  }
+  .cell {
+    width: 50px;
+    height: 50px;
+  }
+  .title {
+    margin-bottom: 10px;
+  }
 }
-
-.difficulty__input {
-  width: 40px;
-  margin-left: 5px;
-} */

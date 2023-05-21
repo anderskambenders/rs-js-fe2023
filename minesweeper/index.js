@@ -1,10 +1,13 @@
 // eslint-disable-next-line import/extensions
-import createLayuot from './components/layout.js';
+import createLayout from './components/layout.js';
 
 window.addEventListener('DOMContentLoaded', () => {
-  createLayuot();
+  createLayout();
   const gameField = document.querySelector('.game__field');
   const newGameBtn = document.querySelector('.game__btn');
+  const score = JSON.parse(localStorage.getItem('score1337mine'));
+  const timerWidget = document.querySelector('.menu__timer');
+  const moveCounter = document.querySelector('.game__mines-cnt');
   const width = 10;
   const height = 10;
   const bombsNumber = 10;
@@ -14,11 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
   let moves = 0;
   let timer = 0;
   let isStart = false;
-  const timerWidget = document.querySelector('.menu__timer');
-  const mineCounter = document.querySelector('.game__mines-cnt');
-  const message = document.querySelector('.message');
-  mineCounter.innerHTML = `0${bombsNumber.toString()}`;
-
+  let result = '';
+  let message = '';
+  moveCounter.innerHTML = '000';
   const clickSnd = new Audio('assets/sounds/click.mp3');
   clickSnd.volume = 0.1;
   const flagSnd = new Audio('assets/sounds/flag.mp3');
@@ -34,9 +35,13 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!cell.classList.contains('checked') && (flags < bombsNumber)) {
       if (!cell.classList.contains('flag')) {
         cell.classList.add('flag');
+        // eslint-disable-next-line no-param-reassign
         cell.innerHTML = ' 🚩';
         flags += 1;
         checkForWin();
+        if (result === 'Win') {
+          renderResult(message, result);
+        }
       } else {
         cell.classList.remove('flag');
         cell.innerHTML = '';
@@ -94,13 +99,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCell(cell) {
-    clickSnd.play();
     const currentId = cell.id;
     if (gameOver) return;
     if (cell.classList.contains('checked') || cell.classList.contains('flag')) return;
     if (cell.classList.contains('bomb') && moves !== 1) {
       gameEnd(cell);
     } else if (cell.classList.contains('valid')) {
+      clickSnd.play();
       const total = cell.getAttribute('data');
       if (+total !== 0) {
         cell.classList.add('checked');
@@ -108,6 +113,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (+total === 2) cell.classList.add('two');
         if (+total === 3) cell.classList.add('three');
         if (+total === 4) cell.classList.add('four');
+        // eslint-disable-next-line no-param-reassign
         cell.innerHTML = total;
         return;
       }
@@ -117,6 +123,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function createTable() {
+    gameField.classList.remove('game__result');
+    gameField.classList.add('game__field')
     const bombArr = Array(bombsNumber).fill('bomb');
     const emptyArray = Array((width * width) - bombsNumber).fill('valid');
     const gameArr = [...emptyArray, ...bombArr].sort(() => Math.random() - 0.5);
@@ -128,13 +136,16 @@ window.addEventListener('DOMContentLoaded', () => {
       gameField.append(cell);
       cells.push(cell);
 
+      // eslint-disable-next-line no-loop-func
       cell.addEventListener('click', () => {
-        moves += 1;
+        if (!cell.classList.contains('checked') && !cell.classList.contains('flag')) {
+          moves += 1;
+          moveCounter.textContent = moves.toString().padStart(3, 0);
+        }
         openCell(cell);
       });
       cell.addEventListener('contextmenu', (target) => {
         target.preventDefault();
-        moves += 1;
         addFlag(cell);
       });
     }
@@ -169,7 +180,12 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
     loseSnd.play();
-    message.innerHTML = 'Game Over! Try again!';
+    message = 'Game Over! Try again!';
+    result = 'Lose';
+    newGameBtn.innerHTML = '&#128530;';
+    setTimeout(() => (
+      renderResult(message, result)
+    ), 1000);
   }
   function checkForWin() {
     let matches = 0;
@@ -181,9 +197,34 @@ window.addEventListener('DOMContentLoaded', () => {
         gameOver = true;
         isStart = false;
         winSnd.play();
-        message.innerHTML = `Hooray! You found all mines in ${timer} seconds and ${moves} moves!`;
+        message = `Hooray! You found all mines in ${timer} seconds and ${moves} moves!`;
+        result = 'Win';
+        newGameBtn.innerHTML = '&#128512;';
       }
     }
+  }
+
+  function renderResult(outcome, report) {
+    gameField.innerHTML = '';
+    gameField.classList.remove('game__field');
+    gameField.classList.add('game__result');
+    const gameResult = [report, timer];
+    score.unshift(gameResult);
+    score.length = score.length > 10 ? 10 : score.length;
+    localStorage.setItem('score1337mine', JSON.stringify(score));
+    let resultStr = '';
+    // eslint-disable-next-line no-restricted-syntax
+    for (const res of score) {
+      resultStr += `<li>${res[0]} - ${res[1]} seconds</li>`;
+    }
+    const resultBlock = `
+    <h2 class="game__message">${outcome}</h2>
+    <h3 class="result__title">Results</h3>
+    <ol>
+    ${resultStr}
+    </ol>
+    `;
+    gameField.innerHTML = resultBlock;
   }
 
   function setTimer() {
@@ -200,25 +241,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const cellHandler = (cell) => {
     if (cell.target.classList.contains('bomb') && moves === 1) {
-      console.log(moves);
       gameField.innerHTML = '';
       moves = 0;
       cells = [];
       createTable();
       openCell(cells[cell.target.id]);
       moves += 1;
-      console.log(moves);
-      if (!isStart && timer === 0) {
+      if (!isStart && timer === 0 && moves === 1) {
         isStart = true;
         setTimer();
       }
     } else {
-      if (!isStart && timer === 0) {
+      if (!isStart && timer === 0 && moves === 1) {
         isStart = true;
         setTimer();
       }
       if (cells.includes(cell.target)) {
-        console.log(cell);
         openCell(cell.target);
       }
     }
@@ -227,12 +265,13 @@ window.addEventListener('DOMContentLoaded', () => {
   newGameBtn.addEventListener('click', () => {
     gameField.innerHTML = '';
     moves = 0;
+    moveCounter.innerHTML = '000';
     isStart = false;
     gameOver = false;
     timer = 0;
     timerWidget.textContent = '000';
     cells = [];
-    message.innerHTML = '';
+    newGameBtn.innerHTML = '&#128578;';
     createTable();
   });
 

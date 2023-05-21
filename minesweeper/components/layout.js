@@ -1,4 +1,4 @@
-function createLayuot() {
+function createLayout() {
   const container = document.createElement('main');
   container.classList.add('container');
   document.body.append(container);
@@ -15,18 +15,13 @@ function createLayuot() {
   const menuWrapper = document.createElement('div');
   menuWrapper.classList.add('menu__wrapper');
   gameMenu.append(menuWrapper);
-  // const difficulty = document.createElement('div');
-  // difficulty.classList.add('difficulty');
-  // gameMenu.append(difficulty);
-  // difficulty.innerHTML = '<button class="difficulty__btn">Easy</button> <button class="difficulty__btn">Medium</button> <button class="difficulty__btn">Hard</button>';
-  // difficulty.innerHTML += ' <label class="difficulty__label" for="mines-input"> Mines <input class="difficulty__input" id="mines-input" type="number"></label>';
   const minesCounter = document.createElement('div');
   minesCounter.classList.add('game__mines-cnt');
   minesCounter.innerHTML = '000';
   menuWrapper.append(minesCounter);
-  const gameBtn = document.createElement('div');
+  const gameBtn = document.createElement('button');
   gameBtn.classList.add('game__btn');
-  gameBtn.innerHTML = '&#128522;';
+  gameBtn.innerHTML = '&#128578;';
   menuWrapper.append(gameBtn);
   const timer = document.createElement('div');
   timer.classList.add('menu__timer');
@@ -38,9 +33,6 @@ function createLayuot() {
   const gameField = document.createElement('div');
   gameField.classList.add('game__field');
   main.append(gameField);
-  const message = document.createElement('p');
-  message.classList.add('message');
-  main.append(message);
 }
 
-export default createLayuot;
+export default createLayout;
