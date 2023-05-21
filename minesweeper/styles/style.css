@@ -1,0 +1,186 @@
+body {
+  background-color: #0D8584;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 80px;
+}
+
+.title {
+  margin: 0 auto;
+  margin-bottom: 60px;
+  font-size: 35px;
+  font-weight: 900;
+
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.game-menu {
+  display: flex;
+  padding: 24px 24px 0;
+  background-color: lightgray;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid gray;
+}
+
+.menu__wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+
+.game__mines-cnt,
+.menu__timer {
+  padding-left: 4px;
+  padding-right: 4px;
+  font: 400 52px Georgia;
+  font-family: 'Digital Dismay';
+  color: red;
+  background-color: black;
+}
+
+.game__btn {
+  text-align: center;
+  border: none;
+  width: 72px;
+  height: 72px;
+  font-size: 54px;
+  margin: 0;
+  padding: 0;
+  border-top: 4px solid white;
+  border-left: 4px solid white;
+  border-bottom: 4px solid gray;
+  border-right: 4px solid gray;
+  font: 400 50px serif;
+  cursor: pointer;
+}
+
+.game__btn:active {
+  border: none;
+}
+
+.game__main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: lightgray;
+    border-left: 3px solid white;
+    border-bottom: 3px solid gray;
+    border-right: 3px solid gray;
+}
+
+.game__field {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  box-sizing: border-box;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+  position: relative;
+}
+
+.game__result {
+  padding: 25px;
+  padding-top: 5px;
+  display: flex;
+  background-color: lightgray;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.result__title {
+  align-self: center;
+  font-size: 30px;
+}
+
+.game__message {
+  font-size: 25px;
+  align-self: center;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  background-color: #C0C0C0;
+  border: 1.5px solid;
+  border-top-color: #ffffff;
+  border-right-color: #7B7B7B;
+  border-bottom-color: #7B7B7B;
+  border-left-color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+}
+.checked {
+  background-color: #C0C0C0;
+  font-size: 100%;
+  text-align: center;
+  border: none;
+}
+.one {
+  color: #e76346 !important;
+}
+
+.two {
+  color: #4199d3 !important;
+}
+
+.three {
+  color: #57da59 !important;
+}
+
+.four{
+  color: #bb41d3 !important;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-top: 10px;
+  }
+  .game-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 600px;
+  }
+  .cell {
+    width: 50px;
+    height: 50px;
+  }
+  .title {
+    margin-bottom: 10px;
+  }
+}
