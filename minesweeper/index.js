@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const isRightEdge = (currentId % width === width - 1);
 
     setTimeout(() => {
-      if (currentId > 0 && !isLeftEdge) {
+      if (!isLeftEdge) {
         const newId = cells[+currentId - 1].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
@@ -60,17 +60,17 @@ window.addEventListener('DOMContentLoaded', () => {
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
       }
-      if (currentId > 10) {
+      if (currentId >= 10) {
         const newId = cells[+currentId - width].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
       }
-      if (currentId > 11 && !isLeftEdge) {
+      if (currentId >= 11 && !isLeftEdge) {
         const newId = cells[+currentId - 1 - width].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
       }
-      if (currentId < 98 && !isRightEdge) {
+      if (!isRightEdge) {
         const newId = cells[+currentId + 1].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
@@ -80,12 +80,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
       }
-      if (currentId < 88 && !isRightEdge) {
+      if (currentId <= 88 && !isRightEdge) {
         const newId = cells[+currentId + 1 + width].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
       }
-      if (currentId < 89) {
+      if (currentId <= 89) {
         const newId = cells[+currentId + width].id;
         const newSquare = document.getElementById(newId);
         openCell(newSquare);
@@ -145,14 +145,15 @@ window.addEventListener('DOMContentLoaded', () => {
       const isRightEdge = (i % width === width - 1);
 
       if (cells[i].classList.contains('valid')) {
-        if (i > 0 && !isLeftEdge && cells[i - 1].classList.contains('bomb')) total += 1;
+        if (!isLeftEdge && cells[i - 1].classList.contains('bomb')) total += 1;
         if (i > 9 && !isRightEdge && cells[i + 1 - width].classList.contains('bomb')) total += 1;
-        if (i > 10 && cells[i - width].classList.contains('bomb')) total += 1;
-        if (i > 11 && !isLeftEdge && cells[i - 1 - width].classList.contains('bomb')) total += 1;
-        if (i < 98 && !isRightEdge && cells[i + 1].classList.contains('bomb')) total += 1;
+        if (i >= 10 && cells[i - width].classList.contains('bomb')) total += 1;
+        if (i >= 11 && !isLeftEdge && cells[i - 1 - width].classList.contains('bomb')) total += 1;
+        if (!isRightEdge && cells[i + 1].classList.contains('bomb')) total += 1;
         if (i < 90 && !isLeftEdge && cells[i - 1 + width].classList.contains('bomb')) total += 1;
-        if (i < 88 && !isRightEdge && cells[i + 1 + width].classList.contains('bomb')) total += 1;
-        if (i < 89 && cells[i + width].classList.contains('bomb')) total += 1;
+        if (i <= 88 && !isRightEdge && cells[i + 1 + width].classList.contains('bomb')) total += 1;
+        if (i <= 89 && cells[i + width].classList.contains('bomb')) total += 1;
+
         cells[i].setAttribute('data', total);
       }
     }
@@ -207,6 +208,10 @@ window.addEventListener('DOMContentLoaded', () => {
       openCell(cells[cell.target.id]);
       moves += 1;
       console.log(moves);
+      if (!isStart && timer === 0) {
+        isStart = true;
+        setTimer();
+      }
     } else {
       if (!isStart && timer === 0) {
         isStart = true;
