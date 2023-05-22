@@ -1,4 +1,4 @@
-[link](https://youtu.be/YAtC1vKPznw)
+[Youtube-link for self-introduction](https://youtu.be/YAtC1vKPznw)
 
 Hello there. I` m  recording this self-introduction video for Rolling Scopes School. Few words about me. My name is Andrey, I am 30 years old. I live in Minsk, Belarus. I graduated Vitebsk State Technological University in economics, now I’m working as sales development representative in international tobacco company. About one and half years ago I have started to learn programming with Python. Also I learned html, css and Javascript a little bit  on my own about few months so it let me to build frontend part of apps. Also I tried to use Python framework Django to build web applications.
 
