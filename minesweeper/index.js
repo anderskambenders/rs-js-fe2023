@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   createLayout();
   const gameField = document.querySelector('.game__field');
   const newGameBtn = document.querySelector('.game__btn');
-  const score = JSON.parse(localStorage.getItem('score1337mine'));
+  const score = JSON.parse(localStorage.getItem('score1337mine')) || [];
   const timerWidget = document.querySelector('.menu__timer');
   const moveCounter = document.querySelector('.game__mines-cnt');
   const width = 10;
