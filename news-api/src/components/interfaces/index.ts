@@ -13,3 +13,10 @@ export interface ISource {
   id: string;
   name: string;
 }
+
+export interface IRespConfig {
+  endpoint: string;
+  options: {
+    sources?: string;
+  };
+}
