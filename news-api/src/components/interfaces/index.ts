@@ -16,7 +16,7 @@ export interface ISource {
 
 export interface IRespConfig {
   endpoint: string;
-  options: {
+  options?: {
     sources?: string;
   };
 }
