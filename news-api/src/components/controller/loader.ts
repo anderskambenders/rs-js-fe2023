@@ -7,13 +7,12 @@ class Loader {
     this.options = options;
   }
 
-  getResp(
+  getResp<T>(
     { endpoint, options = {} }: IRespConfig,
-    callback = () => {
-      console.error("No callback for GET response");
-    }
+    callback: (data: T) => void = () =>
+      console.error("No callback for GET response")
   ) {
-    this.load("GET", callback, { endpoint, options });
+    this.load<T>("GET", callback, { endpoint, options });
   }
 
   errorHandler(res: Response): Response {
