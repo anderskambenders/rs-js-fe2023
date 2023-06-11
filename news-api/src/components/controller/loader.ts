@@ -1,4 +1,4 @@
-import { IRespConfig } from '../interfaces';
+import { IRespConfig, Methods } from '../interfaces';
 class Loader {
   private baseLink: string;
   private options: { apiKey: string };
@@ -11,7 +11,7 @@ class Loader {
     { endpoint, options = {} }: IRespConfig,
     callback: (data: T) => void = () => console.error('No callback for GET response')
   ) {
-    this.load<T>('GET', callback, { endpoint, options });
+    this.load<T>(Methods.get, callback, { endpoint, options });
   }
 
   errorHandler(res: Response): Response {

@@ -15,8 +15,18 @@ export interface ISource {
 }
 
 export interface IRespConfig {
-  endpoint: string;
+  endpoint: Endpoints;
   options?: {
     sources?: string;
   };
+}
+
+export enum Endpoints {
+  sources = 'sources',
+  everything = 'everything',
+}
+
+export enum Methods {
+  post = 'POST',
+  get = 'GET',
 }
