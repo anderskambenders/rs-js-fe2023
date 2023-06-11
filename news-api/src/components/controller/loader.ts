@@ -1,4 +1,4 @@
-import { IRespConfig, Methods } from '../interfaces';
+import { IRespConfig, Methods } from '../types';
 class Loader {
   private baseLink: string;
   private options: { apiKey: string };

@@ -51,3 +51,11 @@ footer .copyright:before {
     background-position: center;
     filter: invert(100%) brightness(100%);
 }
+
+@media (max-width: 768px) {
+    header h1 {
+        text-align: center;
+        font-size: 30px;
+        margin: auto;
+    }
+}
