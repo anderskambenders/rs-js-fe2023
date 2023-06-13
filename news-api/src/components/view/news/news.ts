@@ -1,16 +1,21 @@
 import './news.css';
 import { INews } from '../../types';
 
+const NEWS_AMOUNT_LIMIT = 10;
+
 class News {
   draw(data: INews[]) {
-    const news = data.length >= 10 ? data.filter((_item: INews, idx: number) => idx < 10) : data;
+    const news =
+      data.length >= NEWS_AMOUNT_LIMIT ? data.filter((_item: INews, idx: number) => idx < NEWS_AMOUNT_LIMIT) : data;
 
     const fragment = document.createDocumentFragment();
     const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
 
     news.forEach((item: INews, idx: number) => {
       const newsClone = (newsItemTemp as HTMLTemplateElement).content.cloneNode(true) as HTMLElement;
-      if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
+      if (idx % 2) {
+        (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
+      }
       (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
         item.urlToImage || 'img/news_placeholder.jpg'
       })`;

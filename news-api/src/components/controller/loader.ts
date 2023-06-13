@@ -14,7 +14,7 @@ class Loader {
     this.load<T>(Methods.get, callback, { endpoint, options });
   }
 
-  errorHandler(res: Response): Response {
+  checkError(res: Response): Response {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -39,7 +39,7 @@ class Loader {
 
   load<R>(method: string, callback: (data: R) => void, { endpoint, options = {} }: IRespConfig) {
     fetch(this.makeUrl({ endpoint, options }), { method })
-      .then(this.errorHandler)
+      .then(this.checkError)
       .then((res: Response) => res.json())
       .then((data: R) => callback(data))
       .catch((err: Error) => console.error(err));

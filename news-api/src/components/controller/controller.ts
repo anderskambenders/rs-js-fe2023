@@ -3,7 +3,7 @@ import { ISource, INews, Endpoints } from '../types';
 
 class AppController extends AppLoader {
   getSources(callback: (data: { sources: ISource[] }) => void) {
-    super.getResp(
+    this.getResp(
       {
         endpoint: Endpoints.sources,
       },
@@ -18,9 +18,11 @@ class AppController extends AppLoader {
       if (target.classList.contains('source__item')) {
         const sourceId = target.getAttribute('data-source-id');
         if (newsContainer.getAttribute('data-source') !== sourceId) {
-          if (sourceId == null) throw new Error(`There is no such Attribute`);
+          if (sourceId === null) {
+            throw new Error(`There is no such Attribute`);
+          }
           newsContainer.setAttribute('data-source', sourceId);
-          super.getResp(
+          this.getResp(
             {
               endpoint: Endpoints.everything,
               options: {
