@@ -51,33 +51,135 @@ body {
 .header__logo {
   color: rgba(255, 255, 255, .3);
 }
+.main {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
-footer {
-  height: 100px;
+.main__left {
+width: 100%;
+}
+
+.table__header {
+  color: rgba(255,255,255,.3);
+  font-size: 45px;
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  padding: 20px 30px;
+}
+
+.table__wrapper {
+  width: 60%;
+  min-height: 142px;
+  position: relative;
+  margin-bottom: 5rem;
+
+}
+
+.table__main {
+  box-shadow: 0px 40px 10px rgba(0,0,0,.2);
+  background: #dd992d;
+  transform: perspective(120px) rotateX(10deg);
+  background: linear-gradient(#dd992d,#cd8c26);
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  left: 35%;
+  width: 100%;
+}
+
+.editor {
+  position: relative;
+  text-align: left;
+  width: 90%;
+  height: 500px;
+  margin: 0 auto;
+  border: solid 10px rgba(0,0,0,.35);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+.editor__wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.editor__css, .editor__html {
+  width: 50%;
+}
+.css__header, .html__header {
+  text-align: left;
+  padding: 10px 15px;
+  background: rgba(0,0,0,.15);
+  border-top: solid 1px rgba(255,255,255,.05);
+  border-bottom: solid 1px rgba(255,255,255,.05);
+  border-radius: 2px 2px 0 0;
+  color: rgba(255,255,255,.6);
+}
+.css__header span, .html__header span {
+  font-size: 20px;
+  color: rgba(255,255,255,.6);
+}
+.css__input, .html__input {
+  background: #efefef;
+  color: #AAA;
+  padding: 10px 10px 10px 46px;
+  position: relative;
+  min-height: 432px;
+}
+
+.html__input {
+  background: rgba(0,0,0,.3);
+}
+
+.level-menu {
+  margin-top: -6rem;
+  position: static;
+  min-height: 846px;
+  width: 30%;
+  right: 0;
+  top: 40px;
+  top: 0;
+  bottom: 0;
+  background: #221e18;
+  z-index: 1;
+}
+
+.footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.footer__info {
+
+.footer__link {
   display: flex;
-  text-decoration: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, .3);
 }
 
-.footer__info p {
+.footer__link p {
+  margin-right: 5px;
+}
+
+.footer__info{
   margin: 0;
   margin-right: 10px;
   font-size: 14px;
   color: rgba(255, 255, 255, .3);
 }
-footer .copyright {
-  font-size: 14px;
+.footer .copyright {
+
   color: rgba(255, 255, 255, .3);
   text-align: center;
 }
-footer .copyright a {
+.footer .copyright a {
   color: rgba(255, 255, 255, .3);
 }
-footer .copyright a:hover {
+.footer .copyright a:hover {
   color: rgba(255, 255, 255, .3);
 }
 
