@@ -38,6 +38,7 @@ img {
 }
 
 body {
+  max-height: 100vh;
   font-family: 'Ubuntu Mono', monospace;
   background: #2e2a23;
   background-image: gradient(20% 40%,cover circle, #3e392f, #221e17);
@@ -45,7 +46,7 @@ body {
 }
 
 .header {
-  padding: 20px;
+  padding: 1.5rem;
 }
 
 .header__logo {
@@ -68,12 +69,12 @@ width: 100%;
   margin: 0;
   font-weight: 400;
   text-align: center;
-  padding: 20px 30px;
+  padding: 10px 10px;
 }
 
 .table__wrapper {
   width: 60%;
-  min-height: 142px;
+  min-height: 130px;
   position: relative;
   margin-bottom: 5rem;
 
@@ -95,12 +96,12 @@ width: 100%;
   position: relative;
   text-align: left;
   width: 90%;
-  height: 500px;
+  height: 400px;
   margin: 0 auto;
   border: solid 10px rgba(0,0,0,.35);
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 .editor__wrapper {
   display: flex;
@@ -125,21 +126,64 @@ width: 100%;
   color: rgba(255,255,255,.6);
 }
 .css__input, .html__input {
+  display: flex;
+  font-size: 2.5rem;
+  font-weight: 400;
   background: #efefef;
   color: #AAA;
-  padding: 10px 10px 10px 46px;
+  padding: 0 10px 10px 0;
   position: relative;
   min-height: 432px;
+}
+
+.css__strings, .html__strings {
+  text-align: right;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
+  line-height: 3.3rem;
+  background-color: #DDD;
+}
+
+.html__strings {
+  background-color: #333;
 }
 
 .html__input {
   background: rgba(0,0,0,.3);
 }
 
+.css__field {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes blink {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.input {
+  background: linear-gradient(-45deg, #ddc1c1, #d7f7de, #dfd8d8 );
+  background-size: 400% 400%;
+  width: 80%;
+  animation: blink 3s ease-in-out infinite;
+}
+
 .level-menu {
   margin-top: -6rem;
   position: static;
-  min-height: 846px;
+  min-height: calc(100vh - 6rem);
   width: 30%;
   right: 0;
   top: 40px;
