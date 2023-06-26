@@ -18,15 +18,36 @@ const baseConfig = {
         use: 'ts-loader',
         exclude: ['/node_modules/'],
       },
+      {
+        test: /\.(png|gif|jpg|jpeg|ico)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '../../assets/img/[name][ext]',
+        },
+      },
+
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)$/i,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //     },
+      //   ],
+      // },
     ],
   },
   resolve: {
     extensions: ['.ts', '.js'],
   },
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, '../dist'),
+    filename: 'main-[hash:8].js',
+    path: path.resolve(__dirname, 'dist/rss-css/src'),
+    assetModuleFilename: '../../assets/img/[hash][ext][query]',
   },
+  // output: {
+  //   filename: 'index.js',
+  //   path: path.resolve(__dirname, './dist'),
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),

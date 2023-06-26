@@ -1,3 +1,6 @@
 import './css/normalize.css';
 import './css/global.css';
-console.log('hello world!');
+import { App } from './components/app/app';
+
+const app = new App();
+app.start();
