@@ -41,8 +41,8 @@ const baseConfig = {
   },
   output: {
     filename: 'main-[hash:8].js',
-    path: path.resolve(__dirname, 'dist/rss-css/src'),
-    assetModuleFilename: '../../assets/img/[hash][ext][query]',
+    path: path.resolve(__dirname, 'dist/rs-css/src'),
+    assetModuleFilename: '../../assets/img/[name][ext]',
   },
   // output: {
   //   filename: 'index.js',

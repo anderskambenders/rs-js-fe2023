@@ -1,18 +1,12 @@
-import { LevelsView } from '../view/levels-view';
-import { TableView } from '../view/table-view';
+import { AppView } from '../view/appView';
 
 export class App {
-  viewLevel: LevelsView | null;
-  viewTable: TableView | null;
+  view: AppView;
   constructor() {
-    this.viewLevel = null;
-    this.viewTable = null;
+    this.view = new AppView();
   }
 
   start() {
-    this.viewLevel = new LevelsView();
-    this.viewLevel.draw();
-    this.viewTable = new TableView();
-    this.viewTable.draw(0);
+    this.view.start(0);
   }
 }
