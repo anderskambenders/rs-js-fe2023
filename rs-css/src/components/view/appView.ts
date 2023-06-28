@@ -12,9 +12,13 @@ export class AppView {
     this.table = new TableView();
     this.editor = new EdtorView();
   }
-  start(currentLevel = 0) {
+  start(currentLevel = 1) {
     this.levels.draw();
     this.table.draw(currentLevel);
     this.editor.draw(currentLevel);
+  }
+  drawLevel(lvl: number) {
+    this.table.draw(lvl);
+    this.editor.draw(lvl);
   }
 }
