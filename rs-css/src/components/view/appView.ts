@@ -13,7 +13,7 @@ export class AppView {
     this.editor = new EdtorView();
   }
   start(currentLevel = 1) {
-    this.levels.draw();
+    this.levels.draw(currentLevel);
     this.table.draw(currentLevel);
     this.editor.draw(currentLevel);
   }

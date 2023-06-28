@@ -22,9 +22,13 @@ export class App {
     let currentLevel = 0;
     levels.forEach((level, index) => {
       level.addEventListener('click', () => {
+        levels.forEach((lvl) => {
+          lvl.classList.remove('level_focus');
+        });
         clearLevel();
         this.view.drawLevel(index);
         currentLevel = index;
+        level.classList.add('level_focus');
         localStorage.setItem('game', currentLevel.toString());
       });
     });

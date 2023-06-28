@@ -214,7 +214,7 @@ width: 100%;
 .level:active {
   background-color: #333;
 }
-.level:focus {
+.level_focus {
   background-color: #333;
 }
 
