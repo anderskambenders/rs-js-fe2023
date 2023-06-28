@@ -173,17 +173,6 @@ width: 100%;
   padding: 10px;
 }
 
-@keyframes blink {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 .input {
   background: linear-gradient(-45deg, #ddc1c1, #d7f7de, #dfd8d8 );
@@ -270,4 +259,33 @@ width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   filter: invert(100%) brightness(100%);
+}
+
+.active {
+  animation: move 1s linear infinite;
+}
+
+@keyframes move {
+  100% {
+    transform: translateY(-1px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  0% {
+    transform: translateY(-1px);
+  }
+}
+
+
+@keyframes blink {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
