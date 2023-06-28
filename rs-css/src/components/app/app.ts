@@ -9,7 +9,12 @@ export class App {
   }
 
   initLayout() {
-    this.view.start(0);
+    this.view.start(this.storageChecker());
+  }
+
+  storageChecker() {
+    const currentLevel = Number(localStorage.getItem('game'));
+    return currentLevel;
   }
 
   levelListen() {
@@ -20,6 +25,7 @@ export class App {
         clearLevel();
         this.view.drawLevel(index);
         currentLevel = index;
+        localStorage.setItem('game', currentLevel.toString());
       });
     });
     this.formListener(currentLevel);
