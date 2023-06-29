@@ -1,7 +1,7 @@
 import { levels } from '../levels/levels';
 
 export class LevelsView {
-  block;
+  private block: HTMLElement | null;
 
   constructor() {
     this.block = document.querySelector('.level-menu');

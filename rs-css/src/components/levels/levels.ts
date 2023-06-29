@@ -10,7 +10,7 @@ export const levels = [
     input: 'skeleton',
     selector: [0, 1],
     img: [skeletonImg, skeletonImg],
-    boardMarkup: ['&lt;skeleton/&gt;', '&lt;skeleton/&gt;'],
+    boardMarkup: ['\n&lt;skeleton&gt;', '\n&lt;/skeleton&gt', '\n&lt;skeleton&gt;', '\n&lt;/skeleton&gt'],
   },
   {
     doThis: 'Select the knights',

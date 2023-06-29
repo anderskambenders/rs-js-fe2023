@@ -13,8 +13,7 @@ export class App {
   }
 
   storageChecker() {
-    const currentLevel = Number(localStorage.getItem('game'));
-    return currentLevel;
+    return Number(localStorage.getItem('game'));
   }
 
   levelListen() {
