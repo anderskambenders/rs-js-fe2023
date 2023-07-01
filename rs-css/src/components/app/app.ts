@@ -1,51 +1,13 @@
-import { AppView } from '../view/appView';
-import { clearLevel } from './clearLevel';
-import { levels } from '../levels/levels';
+import { AppView } from '../blocks/appView';
+import { storageChecker } from '../utils/storageChecker';
 
 export class App {
-  view: AppView;
+  private view: AppView;
   constructor() {
     this.view = new AppView();
   }
 
   initLayout() {
-    this.view.start(this.storageChecker());
-  }
-
-  storageChecker() {
-    return Number(localStorage.getItem('game'));
-  }
-
-  levelListen() {
-    const levels = document.querySelectorAll('.level');
-    let currentLevel = 0;
-    levels.forEach((level, index) => {
-      level.addEventListener('click', () => {
-        levels.forEach((lvl) => {
-          lvl.classList.remove('level_focus');
-        });
-        clearLevel();
-        this.view.drawLevel(index);
-        currentLevel = index;
-        level.classList.add('level_focus');
-        localStorage.setItem('game', currentLevel.toString());
-      });
-    });
-    this.formListener(currentLevel);
-  }
-  formListener(level: number) {
-    const form = document.querySelector('form');
-    const input = document.querySelector('input');
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (input?.value === levels[level].input) {
-        clearLevel();
-        this.view.drawLevel(level + 1);
-      } else {
-        if (input !== null) {
-          input.value = '';
-        }
-      }
-    });
+    this.view.start(storageChecker());
   }
 }

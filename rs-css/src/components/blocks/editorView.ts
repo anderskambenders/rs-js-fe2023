@@ -1,8 +1,17 @@
 import { levels } from '../levels/levels';
+import { EventEmitter } from '../eventEmitter';
+import { clearLevel } from '../utils/clearLevel';
 import hljs from 'highlight.js';
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 
-export class EdtorView {
+export class EditorView {
+  private emitter: EventEmitter;
+  constructor(emitter: EventEmitter) {
+    this.emitter = emitter;
+    this.emitter.subscribe('event:level-changed', (data: number): void => {
+      this.draw(data);
+    });
+  }
   draw(currentLevel: number) {
     const input = document.querySelector('.html__field');
     const lvlCode = levels[currentLevel].boardMarkup;
@@ -26,5 +35,24 @@ export class EdtorView {
     input?.classList.add('xml');
     (input as HTMLElement).append(htmlCodeEnd);
     hljs.highlightElement(input as HTMLElement);
+  }
+
+  formListener(level: number) {
+    const form = document.querySelector('form');
+    const input = document.querySelector('input');
+    const nextLevel = level + 1;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input?.value === levels[level].input) {
+        clearLevel();
+        this.emitter.emit('event:level-changed', nextLevel);
+        this.emitter.emit('event:win-level', nextLevel);
+        localStorage.setItem('game', nextLevel.toString());
+      } else {
+        if (input !== null) {
+          input.value = '';
+        }
+      }
+    });
   }
 }

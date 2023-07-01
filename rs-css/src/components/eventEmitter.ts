@@ -1,11 +1,11 @@
-type EventsType = Record<string, Array<() => void>>;
+type EventsType = Record<string, Array<(data: number) => void>>;
 
 export class EventEmitter {
   private events: EventsType;
   constructor() {
     this.events = {};
   }
-  subscribe(eventName: string, fn: () => void) {
+  subscribe(eventName: string, fn: (data: number) => void) {
     if (!this.events[eventName]) {
       this.events[eventName] = [];
     }
