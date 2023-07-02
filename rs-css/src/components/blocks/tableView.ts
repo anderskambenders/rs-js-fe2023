@@ -18,13 +18,18 @@ export class TableView {
     images.forEach((image, ind) => {
       const imgWrapper = document.createElement('div');
       const img = document.createElement('img');
+      const imgHelper = document.createElement('p');
       img.src = image;
       imgWrapper.classList.add('image__wrapper');
       img.classList.add('image');
       if (select.includes(ind)) {
         img.classList.add('active');
       }
+      imgHelper.classList.add('image__content');
+      imgHelper.textContent = levels[currentLevel].boardMarkup[ind];
+
       imgWrapper.append(img);
+      imgWrapper.append(imgHelper);
       table?.append(imgWrapper);
     });
   }

@@ -21,7 +21,7 @@ export class EditorView {
     const htmlCodeEnd = document.createElement('pre');
     htmlCodeStart.textContent = `<div class="castle">`;
     htmlCodeStart.classList.add('html__code');
-    hljs.highlightElement(htmlCodeStart);
+    // hljs.highlightElement(htmlCodeStart);
     (input as HTMLElement).append(htmlCodeStart);
     lvlCode.forEach((code) => {
       const str = document.createElement('p');
@@ -34,7 +34,7 @@ export class EditorView {
     htmlCodeEnd.classList.add('html__code');
     input?.classList.add('xml');
     (input as HTMLElement).append(htmlCodeEnd);
-    hljs.highlightElement(input as HTMLElement);
+    // hljs.highlightElement(input as HTMLElement);
   }
 
   formListener(level: number) {
