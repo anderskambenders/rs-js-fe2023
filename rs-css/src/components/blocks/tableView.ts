@@ -8,6 +8,9 @@ export class TableView {
     this.emitter.subscribe('event:level-changed', (data: number): void => {
       this.draw(data);
     });
+    this.emitter.subscribe('event:right-answer', (data) => {
+      this.moveRight(data);
+    });
   }
 
   draw(currentLevel: number) {
@@ -31,6 +34,15 @@ export class TableView {
       imgWrapper.append(img);
       imgWrapper.append(imgHelper);
       table?.append(imgWrapper);
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  moveRight(_: number) {
+    const image = document.querySelectorAll('.image');
+    image.forEach((img) => {
+      img.classList.add('move_right');
+      setTimeout(() => (img as HTMLElement).classList.remove('move_right'), 1000);
     });
   }
 }

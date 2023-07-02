@@ -16,6 +16,7 @@ export class EditorView {
     const input = document.querySelector('.html__field');
     const lvlCode = levels[currentLevel].boardMarkup;
     const code = document.createElement('code');
+    const form = document.querySelector('form');
     code.textContent = `<div class="castle">`;
     const htmlCodeStart = document.createElement('pre');
     const htmlCodeEnd = document.createElement('pre');
@@ -34,6 +35,9 @@ export class EditorView {
     htmlCodeEnd.classList.add('html__code');
     input?.classList.add('xml');
     (input as HTMLElement).append(htmlCodeEnd);
+    const newForm = (form as HTMLElement).cloneNode(true);
+    ((form as HTMLFormElement).parentNode as HTMLElement).replaceChild(newForm, form as HTMLFormElement);
+    this.formListener(currentLevel);
     // hljs.highlightElement(input as HTMLElement);
   }
 
@@ -43,16 +47,27 @@ export class EditorView {
     const nextLevel = level + 1;
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
+      console.log(input?.value, levels[level].input);
       if (input?.value === levels[level].input) {
-        clearLevel();
-        this.emitter.emit('event:level-changed', nextLevel);
-        this.emitter.emit('event:win-level', nextLevel);
-        localStorage.setItem('game', nextLevel.toString());
+        this.emitter.emit('event:right-answer', level);
+        setTimeout(() => {
+          clearLevel();
+          this.emitter.emit('event:win-level', nextLevel);
+          this.emitter.emit('event:level-changed', nextLevel);
+          localStorage.setItem('game', nextLevel.toString());
+        }, 1000);
       } else {
         if (input !== null) {
           input.value = '';
+          this.moveWrong();
         }
       }
     });
+  }
+
+  moveWrong() {
+    const body = document.querySelector('body');
+    (body as HTMLElement).classList.add('move_wrong');
+    setTimeout(() => (body as HTMLElement).classList.remove('move_wrong'), 1000);
   }
 }

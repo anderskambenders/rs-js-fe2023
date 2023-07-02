@@ -1,6 +1,4 @@
 import { AppView } from '../blocks/appView';
-import { storageChecker } from '../utils/storageChecker';
-
 export class App {
   private view: AppView;
   constructor() {
@@ -8,6 +6,6 @@ export class App {
   }
 
   initLayout() {
-    this.view.start(storageChecker());
+    this.view.start();
   }
 }
