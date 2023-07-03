@@ -162,6 +162,10 @@ width: 100%;
   min-height: 432px;
 }
 
+.html__field {
+  color: #221e18;
+}
+
 .css__strings, .html__strings {
   text-align: right;
   padding-right: 1rem;

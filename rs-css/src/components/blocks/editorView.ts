@@ -1,8 +1,6 @@
 import { levels } from '../levels/levels';
 import { EventEmitter } from '../eventEmitter';
 import { clearLevel } from '../utils/clearLevel';
-import hljs from 'highlight.js';
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 
 export class EditorView {
   private emitter: EventEmitter;
@@ -22,7 +20,6 @@ export class EditorView {
     const htmlCodeEnd = document.createElement('pre');
     htmlCodeStart.textContent = `<div class="castle">`;
     htmlCodeStart.classList.add('html__code');
-    // hljs.highlightElement(htmlCodeStart);
     (input as HTMLElement).append(htmlCodeStart);
     lvlCode.forEach((code) => {
       const str = document.createElement('p');
@@ -38,7 +35,6 @@ export class EditorView {
     const newForm = (form as HTMLElement).cloneNode(true);
     ((form as HTMLFormElement).parentNode as HTMLElement).replaceChild(newForm, form as HTMLFormElement);
     this.formListener(currentLevel);
-    hljs.highlightElement(input as HTMLElement);
   }
 
   formListener(level: number) {
@@ -48,7 +44,11 @@ export class EditorView {
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
       console.log(input?.value, levels[level].input);
-      if (input?.value === levels[level].input) {
+      if (input?.value === levels[level].input && level === levels.length - 1) {
+        alert('Congratulations!!! You win!');
+        localStorage.clear();
+        window.location.reload();
+      } else if (input?.value === levels[level].input) {
         this.emitter.emit('event:right-answer', level);
         setTimeout(() => {
           clearLevel();
