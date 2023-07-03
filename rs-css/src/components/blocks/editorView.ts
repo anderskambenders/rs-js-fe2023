@@ -38,7 +38,7 @@ export class EditorView {
     const newForm = (form as HTMLElement).cloneNode(true);
     ((form as HTMLFormElement).parentNode as HTMLElement).replaceChild(newForm, form as HTMLFormElement);
     this.formListener(currentLevel);
-    // hljs.highlightElement(input as HTMLElement);
+    hljs.highlightElement(input as HTMLElement);
   }
 
   formListener(level: number) {

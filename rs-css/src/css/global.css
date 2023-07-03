@@ -342,3 +342,30 @@ width: 100%;
   90% {transform: scale3d(0.1, 0.1, 0.1);}
   100% {transform: scale3d(0, 0, 0);}
 }
+
+@media (max-width: 1150px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 968px) {
+  .main {
+    flex-wrap: wrap;
+  }
+  .level-menu {
+    width: 100%;
+  }
+  .editor {
+    width: 100%;
+  }
+  .css__input, .html__input {
+    font-size: 2rem;
+  }
+  .button {
+    font-size: 1.5rem;
+  }
+  .input {
+    font-size: 1.5rem;
+  }
+}
