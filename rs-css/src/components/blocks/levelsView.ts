@@ -7,9 +7,7 @@ export class LevelsView {
 
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
-    this.emitter.subscribe('event:win-level', (data: number) => {
-      this.winLevel(data);
-    });
+    this.emitter.subscribe('event:level-changed', (data) => this.winLevel(data as number));
   }
 
   draw(currentLevel: number) {
@@ -34,14 +32,9 @@ export class LevelsView {
   }
   levelListen(index: number) {
     const levels = document.querySelectorAll('.level');
-    let currentLevel = 0;
-    levels.forEach((level) => {
-      level.classList.remove('level_focus');
-    });
+    levels[index].classList.remove('level_focus');
     clearLevel();
-    currentLevel = index;
     levels[index].classList.add('level_focus');
-    localStorage.setItem('game', currentLevel.toString());
     this.emitter.emit('event:level-changed', index);
   }
   winLevel(lvl: number) {

@@ -2,7 +2,7 @@ import { LevelsView } from './levelsView';
 import { TableView } from './tableView';
 import { EditorView } from './editorView';
 import { EventEmitter } from '../eventEmitter';
-import { storageChecker } from '../utils/storageChecker';
+import { getLevelFromLS } from '../utils/getLevelFromLS';
 
 export class AppView {
   private levels: LevelsView;
@@ -16,10 +16,8 @@ export class AppView {
     this.table = new TableView(this.emitter);
     this.editor = new EditorView(this.emitter);
   }
-  start(currentLevel = 0) {
-    if (storageChecker()) {
-      currentLevel = storageChecker();
-    }
+  start() {
+    const currentLevel = getLevelFromLS() || 0;
     this.levels.draw(currentLevel);
     this.table.draw(currentLevel);
     this.editor.draw(currentLevel);

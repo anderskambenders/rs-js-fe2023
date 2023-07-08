@@ -4,11 +4,11 @@ import { clearLevel } from '../utils/clearLevel';
 
 export class EditorView {
   private emitter: EventEmitter;
+  private finishedLevels: Array<number>;
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
-    this.emitter.subscribe('event:level-changed', (data: number): void => {
-      this.draw(data);
-    });
+    this.finishedLevels = JSON.parse(localStorage.getItem('finished') as string) || [];
+    this.emitter.subscribe('event:level-changed', (data) => this.draw(data as number));
   }
   draw(currentLevel: number) {
     const input = document.querySelector('.html__field');
@@ -40,22 +40,32 @@ export class EditorView {
   formListener(level: number) {
     const form = document.querySelector('form');
     const input = document.querySelector('input');
-    const nextLevel = level + 1;
+    const finishedLvlSet = new Set(this.finishedLevels);
+    let nextLevel = level + 1;
+    if (finishedLvlSet.has(nextLevel) || nextLevel === 10) {
+      for (let i = 0; i < levels.length; i += 1) {
+        if (!finishedLvlSet.has(i)) {
+          nextLevel = i;
+        }
+      }
+    }
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log(input?.value, levels[level].input);
-      if (input?.value === levels[level].input && level === levels.length - 1) {
-        alert('Congratulations!!! You win!');
-        localStorage.clear();
-        window.location.reload();
-      } else if (input?.value === levels[level].input) {
-        this.emitter.emit('event:right-answer', level);
-        setTimeout(() => {
-          clearLevel();
-          this.emitter.emit('event:win-level', nextLevel);
-          this.emitter.emit('event:level-changed', nextLevel);
-          localStorage.setItem('game', nextLevel.toString());
-        }, 1000);
+      if (input?.value === levels[level].input) {
+        if (finishedLvlSet.size === levels.length - 1) {
+          alert('Congratulations!!! You win!');
+          localStorage.clear();
+          window.location.reload();
+        } else {
+          this.finishedLevels.push(level);
+          localStorage.setItem('finished', JSON.stringify(this.finishedLevels));
+          this.emitter.emit('event:right-answer', level);
+          setTimeout(() => {
+            clearLevel();
+            this.emitter.emit('event:level-changed', nextLevel);
+            localStorage.setItem('game', nextLevel.toString());
+          }, 1000);
+        }
       } else {
         if (input !== null) {
           input.value = '';

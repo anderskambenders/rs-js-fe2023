@@ -5,12 +5,8 @@ export class TableView {
   private emitter: EventEmitter;
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
-    this.emitter.subscribe('event:level-changed', (data: number): void => {
-      this.draw(data);
-    });
-    this.emitter.subscribe('event:right-answer', (data) => {
-      this.moveRight(data);
-    });
+    this.emitter.subscribe('event:right-answer', () => this.moveRight());
+    this.emitter.subscribe('event:level-changed', (data) => this.draw(data as number));
   }
 
   draw(currentLevel: number) {
@@ -37,8 +33,7 @@ export class TableView {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  moveRight(_: number) {
+  moveRight() {
     const image = document.querySelectorAll('.image');
     image.forEach((img) => {
       img.classList.add('move_right');

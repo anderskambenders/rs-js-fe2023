@@ -1,11 +1,12 @@
-type EventsType = Record<string, Array<(data: number) => void>>;
+type CallbackFn<T = unknown> = (data: T) => void;
+type EventsType = Record<string, Array<CallbackFn>>;
 
 export class EventEmitter {
   private events: EventsType;
   constructor() {
     this.events = {};
   }
-  subscribe(eventName: string, fn: (data: number) => void) {
+  subscribe(eventName: string, fn: CallbackFn) {
     if (!this.events[eventName]) {
       this.events[eventName] = [];
     }
@@ -13,10 +14,10 @@ export class EventEmitter {
     this.events[eventName].push(fn);
   }
 
-  emit(eventName: string, data: number) {
+  emit(eventName: string, data?: unknown) {
     const event = this.events[eventName];
     if (event) {
-      event.forEach((fn: (data: number) => void) => {
+      event.forEach((fn: CallbackFn) => {
         fn.call(null, data);
       });
     }
