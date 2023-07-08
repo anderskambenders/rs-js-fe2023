@@ -25,7 +25,7 @@ export class TableView {
         img.classList.add('active');
       }
       imgHelper.classList.add('image__content');
-      imgHelper.textContent = levels[currentLevel].boardMarkup[ind];
+      imgHelper.innerHTML = levels[currentLevel].boardMarkup[ind];
 
       imgWrapper.append(img);
       imgWrapper.append(imgHelper);
