@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+
+body {
+  max-height: 100vh;
+  font-family: 'Ubuntu Mono', monospace;
+  background: #2e2a23;
+  background-image: gradient(20% 40%,cover circle, #3e392f, #221e17);
+  background-repeat: no-repeat;
+}

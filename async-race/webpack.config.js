@@ -1,8 +1,8 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
@@ -21,9 +21,9 @@ const baseConfig = {
       {
         test: /\.(png|gif|jpg|jpeg|ico)$/,
         type: 'asset/resource',
-        generator: {
-          filename: '../../assets/img/[name][ext]',
-        },
+        // generator: {
+        //   filename: '../../assets/img/[name][ext]',
+        // },
       },
 
       // {
@@ -41,7 +41,7 @@ const baseConfig = {
   },
   output: {
     filename: 'main-[hash:8].js',
-    path: path.resolve(__dirname, 'dist/rs-css/src'),
+    path: path.resolve(__dirname, 'dist/async-race/src'),
     assetModuleFilename: '../../assets/img/[name][ext]',
   },
   // output: {
@@ -51,10 +51,16 @@ const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
+      favicon: './src/assets/favicon/favicon.png',
       filename: 'index.html',
     }),
-    new CleanWebpackPlugin(),
     new EslintPlugin({ extensions: 'ts' }),
+    new CopyPlugin({
+      patterns: [
+        { from: './src/assets', to: './assets' },
+        // { from: './src/db', to: './../dist/db' },
+      ],
+    }),
   ],
 };
 
