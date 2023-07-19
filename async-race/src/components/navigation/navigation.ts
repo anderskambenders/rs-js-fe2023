@@ -1,18 +1,17 @@
 import { createBtn } from '../buttons/button';
 
-export class HeaderMenu {
+export class Navigation {
   draw() {
-    const menu = this.createMenu();
+    const menu = this.create();
     const garageBtn = createBtn('garage', 'Garage');
     const winnersBtn = createBtn('winners', 'Winners');
-    menu.append(garageBtn);
-    menu.append(winnersBtn);
+    menu.append(garageBtn, winnersBtn);
     return menu;
   }
 
-  createMenu() {
+  create() {
     const menu = document.createElement('nav');
-    menu.classList.add('menu');
+    menu.classList.add('nav');
     return menu;
   }
 }

@@ -1,20 +1,20 @@
 import { Garage } from './view/garage';
-import { HeaderMenu } from './header/header';
+import { Navigation } from './navigation/navigation';
 
 export class App {
-  private menu: HeaderMenu;
+  private navigation: Navigation;
 
   private garage: Garage;
 
   private body: HTMLBodyElement | null;
 
   constructor() {
-    this.menu = new HeaderMenu();
+    this.navigation = new Navigation();
     this.garage = new Garage();
     this.body = document.querySelector('body');
   }
 
   start() {
-    this.body?.append(this.menu.draw());
+    this.body?.append(this.navigation.draw(), this.garage.draw());
   }
 }
