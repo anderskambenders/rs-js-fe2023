@@ -66,6 +66,7 @@ body {
 .menu {
   display: flex;
   flex-direction: column;
+  margin-bottom: 3rem;
 }
 
 .create_car, .update_car {
@@ -75,4 +76,9 @@ body {
 .create_car input, .update_car input  {
   font-size:  2rem;
   margin-right: 1rem;
+}
+
+.page__title_garage {
+  font-size: 3rem;
+  color: rgb(248, 226, 226);
 }

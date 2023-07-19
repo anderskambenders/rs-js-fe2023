@@ -4,7 +4,9 @@ export class Garage {
   draw() {
     const garage = this.createElement('section', 'garage', 'garage');
     const menu = this.generateMenu();
-    garage.append(menu);
+    const pageTitle = this.createPageTitle();
+    const trackContainer = this.createElement('div', 'track__container');
+    garage.append(menu, pageTitle, trackContainer);
     return garage;
   }
 
@@ -26,6 +28,19 @@ export class Garage {
     );
     menu.append(createCar, updateCar, raceControls);
     return menu;
+  }
+
+  createPageTitle(value = 1) {
+    let pageTitle = document.getElementById('page__title_garage');
+    if (!pageTitle) {
+      pageTitle = document.createElement('h1');
+      pageTitle.classList.add('page__title_garage');
+      pageTitle.id = `page__title_garage`;
+      pageTitle.innerText = `Garage [page ${value}]`;
+    } else {
+      pageTitle.innerText = `Garage [page ${value}]`;
+    }
+    return pageTitle;
   }
 
   createElement(tag: string, style: string, id?: string, type?: string, value?: string) {
