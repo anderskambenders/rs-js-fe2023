@@ -33,7 +33,7 @@ export class Garage {
   createPageTitle(value = 1) {
     let pageTitle = document.getElementById('page__title_garage');
     if (!pageTitle) {
-      pageTitle = document.createElement('h1');
+      pageTitle = document.createElement('h2');
       pageTitle.classList.add('page__title_garage');
       pageTitle.id = `page__title_garage`;
       pageTitle.innerText = `Garage [page ${value}]`;
