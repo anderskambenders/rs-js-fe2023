@@ -2,6 +2,7 @@ import { Garage } from './view/garage';
 import { Navigation } from './navigation/navigation';
 import { Winners } from './view/winners';
 import { EventEmitter } from './event-emitter';
+import { getCars } from './api/api';
 
 export class App {
   private emitter: EventEmitter;
@@ -22,7 +23,8 @@ export class App {
     this.body = document.querySelector('body');
   }
 
-  start() {
-    this.body?.append(this.navigation.draw(), this.garage.draw(), this.winners.draw());
+  async start() {
+    const carResponse = await getCars();
+    this.body?.append(this.navigation.draw(), this.garage.draw(carResponse), this.winners.draw());
   }
 }
