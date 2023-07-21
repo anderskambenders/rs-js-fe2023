@@ -1,10 +1,23 @@
 import { createBtn } from '../buttons/button';
+import { EventEmitter } from '../event-emitter';
 
 export class Navigation {
+  private emitter: EventEmitter;
+
+  constructor(emitter: EventEmitter) {
+    this.emitter = emitter;
+  }
+
   draw() {
     const menu = this.create();
-    const garageBtn = createBtn('garage', 'Garage');
-    const winnersBtn = createBtn('winners', 'Winners');
+    const garageBtn = createBtn('nav_garage', 'Garage');
+    garageBtn.addEventListener('click', () => {
+      this.emitter.emit('event:to-garage');
+    });
+    const winnersBtn = createBtn('nav_winners', 'Winners');
+    winnersBtn.addEventListener('click', () => {
+      this.emitter.emit('event:to-winners');
+    });
     menu.append(garageBtn, winnersBtn);
     return menu;
   }

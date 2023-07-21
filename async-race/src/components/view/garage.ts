@@ -1,8 +1,24 @@
 import { createBtn } from '../buttons/button';
+import { EventEmitter } from '../event-emitter';
 
 export class Garage {
+  private emitter: EventEmitter;
+
+  private rootElem: HTMLElement;
+
+  constructor(emitter: EventEmitter) {
+    this.emitter = emitter;
+    this.rootElem = this.createElement('section', 'garage', 'garage');
+    this.emitter.subscribe('event:to-garage', () => {
+      this.goToGaragePage();
+    });
+    this.emitter.subscribe('event:to-winners', () => {
+      this.goOutOfGaragePage();
+    });
+  }
+
   draw() {
-    const garage = this.createElement('section', 'garage', 'garage');
+    const garage = this.rootElem;
     const menu = this.generateMenu();
     const pageTitle = this.createPageTitle();
     const trackContainer = this.createElement('div', 'track__container');
@@ -56,5 +72,15 @@ export class Garage {
       (elem as HTMLInputElement).value = value;
     }
     return elem;
+  }
+
+  goToGaragePage() {
+    this.rootElem.classList.remove('hidden');
+    this.rootElem.classList.add('visible');
+  }
+
+  goOutOfGaragePage() {
+    this.rootElem.classList.remove('visible');
+    this.rootElem.classList.add('hidden');
   }
 }

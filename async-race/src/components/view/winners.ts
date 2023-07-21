@@ -1,6 +1,24 @@
+import { EventEmitter } from '../event-emitter';
+
 export class Winners {
+  private emitter: EventEmitter;
+
+  private rootElem: HTMLElement;
+
+  constructor(emitter: EventEmitter) {
+    this.emitter = emitter;
+    this.rootElem = this.createElement('div', 'winners');
+    this.emitter.subscribe('event:to-garage', () => {
+      this.goOutOfWinnersPage();
+    });
+    this.emitter.subscribe('event:to-winners', () => {
+      this.goToWinnersPage();
+    });
+  }
+
   draw() {
-    const winners = this.createElement('div', 'winners');
+    const winners = this.rootElem;
+    winners.classList.add('hidden');
     const pageTitle = this.createPageTitle();
     winners.append(pageTitle);
     return winners;
@@ -32,5 +50,15 @@ export class Winners {
       (elem as HTMLInputElement).value = value;
     }
     return elem;
+  }
+
+  goToWinnersPage() {
+    this.rootElem.classList.remove('hidden');
+    this.rootElem.classList.add('visible');
+  }
+
+  goOutOfWinnersPage() {
+    this.rootElem.classList.remove('visible');
+    this.rootElem.classList.add('hidden');
   }
 }

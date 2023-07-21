@@ -1,8 +1,11 @@
 import { Garage } from './view/garage';
 import { Navigation } from './navigation/navigation';
 import { Winners } from './view/winners';
+import { EventEmitter } from './event-emitter';
 
 export class App {
+  private emitter: EventEmitter;
+
   private navigation: Navigation;
 
   private garage: Garage;
@@ -12,9 +15,10 @@ export class App {
   private body: HTMLBodyElement | null;
 
   constructor() {
-    this.navigation = new Navigation();
-    this.garage = new Garage();
-    this.winners = new Winners();
+    this.emitter = new EventEmitter();
+    this.navigation = new Navigation(this.emitter);
+    this.garage = new Garage(this.emitter);
+    this.winners = new Winners(this.emitter);
     this.body = document.querySelector('body');
   }
 
