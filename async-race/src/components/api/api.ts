@@ -18,7 +18,7 @@ const getSortOrder = (sort: string, order: string) => {
   return '';
 };
 
-const getCar = async (id: number) => (await fetch(`${garage}/${id}`)).json();
+export const getCar = async (id: number) => (await fetch(`${garage}/${id}`)).json();
 
 export const getWinners = async (page: number, sort: string, order: string, limit = 10) => {
   const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSortOrder(sort, order)}`);

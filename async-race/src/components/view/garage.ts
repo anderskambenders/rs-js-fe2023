@@ -2,7 +2,7 @@ import { createBtn } from '../buttons/button';
 import { EventEmitter } from '../event-emitter';
 import { Car } from '../types/types';
 import { createCarSVG } from '../utils/carSVG';
-import { createCarApi, getCars } from '../api/api';
+import { createCarApi, getCars, getCar } from '../api/api';
 
 export class Garage {
   private emitter: EventEmitter;
@@ -97,6 +97,11 @@ export class Garage {
     const btnSelect = this.createElement('button', ['button', 'select']);
     (btnSelect as HTMLButtonElement).value = car.id.toString();
     btnSelect.innerText = 'Select';
+    btnSelect.addEventListener('click', (e) => {
+      const carId = (e.target as HTMLButtonElement).value;
+      console.log(carId);
+      this.selectListener(+carId);
+    });
     const btnRemove = this.createElement('button', ['button', 'remove']);
     (btnRemove as HTMLButtonElement).value = car.id.toString();
     btnRemove.innerText = 'Remove';
@@ -136,6 +141,18 @@ export class Garage {
       await createCarApi({ name: carName.value, color: carColor.value });
       this.draw();
     }
+  }
+
+  async selectListener(carId: number) {
+    const car: Car = await getCar(carId);
+    // console.log(car);
+    const textInput: HTMLInputElement | null = document.getElementById('update_text') as HTMLInputElement | null;
+    const colorInput: HTMLInputElement | null = document.getElementById('update_color') as HTMLInputElement | null;
+    const updateBtn: HTMLButtonElement | null = document.getElementById('update-btn') as HTMLButtonElement | null;
+    (textInput as HTMLInputElement).value = car.name;
+    (colorInput as HTMLInputElement).value = car.color;
+    (updateBtn as HTMLButtonElement).value = `${carId}`;
+    window.scrollTo(0, 0);
   }
 
   goToGaragePage() {
