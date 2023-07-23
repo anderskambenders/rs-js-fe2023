@@ -54,3 +54,6 @@ export const updateCarApi = async (id: number, body: Body): Promise<Car> =>
       },
     })
   ).json();
+
+export const deleteCarAPI = async (id: number): Promise<void> =>
+  (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();

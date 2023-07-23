@@ -2,7 +2,7 @@ import { createBtn } from '../buttons/button';
 import { EventEmitter } from '../event-emitter';
 import { Car, Color } from '../types/types';
 import { createCarSVG } from '../utils/carSVG';
-import { createCarApi, getCars, getCar, updateCarApi } from '../api/api';
+import { createCarApi, getCars, getCar, updateCarApi, deleteCarAPI } from '../api/api';
 
 export class Garage {
   private emitter: EventEmitter;
@@ -111,6 +111,10 @@ export class Garage {
     const btnRemove = this.createElement('button', ['button', 'remove']);
     (btnRemove as HTMLButtonElement).value = car.id.toString();
     btnRemove.innerText = 'Remove';
+    btnRemove.addEventListener('click', (e) => {
+      const carId = (e.target as HTMLButtonElement).value;
+      this.removeListener(+carId);
+    });
     carManipulation.append(btnSelect, btnRemove);
     const engineControl = this.createElement('div', ['engine_control']);
     const btnStart = this.createElement('button', ['button', 'start']);
@@ -177,6 +181,13 @@ export class Garage {
     (updateBtn as HTMLButtonElement).value = ``;
     (container as HTMLElement).innerHTML = '';
     this.generateTracks(container as HTMLElement);
+  }
+
+  async removeListener(carId: number) {
+    const container = document.getElementById('track_container');
+    await deleteCarAPI(carId);
+    (container as HTMLElement).innerHTML = '';
+    await this.generateTracks(container as HTMLElement);
   }
 
   goToGaragePage() {
