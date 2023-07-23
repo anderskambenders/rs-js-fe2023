@@ -1,4 +1,4 @@
-import { WinnerCar, Winner } from '../types/types';
+import { WinnerCar, Winner, CarModel } from '../types/types';
 
 const base = 'http://localhost:3000';
 const garage = `${base}/garage`;
@@ -30,4 +30,16 @@ export const getWinners = async (page: number, sort: string, order: string, limi
     ),
     count: response.headers.get('X-Total-Count'),
   };
+};
+
+export const createCarApi = async (body: CarModel): Promise<CarModel> => {
+  const response = await fetch(`${garage}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  const car: CarModel = await response.json();
+  return car;
 };

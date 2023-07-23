@@ -2,7 +2,7 @@ import { Garage } from './view/garage';
 import { Navigation } from './navigation/navigation';
 import { Winners } from './view/winners';
 import { EventEmitter } from './event-emitter';
-import { getCars, getWinners } from './api/api';
+import { getWinners } from './api/api';
 
 const sort = 'id';
 const order = 'ASC';
@@ -27,8 +27,7 @@ export class App {
   }
 
   async start() {
-    const carResponse = await getCars();
     const winnersResponse = await getWinners(1, sort, order);
-    this.body?.append(this.navigation.draw(), this.garage.draw(carResponse), this.winners.draw(winnersResponse));
+    this.body?.append(this.navigation.draw(), await this.garage.draw(), this.winners.draw(winnersResponse));
   }
 }

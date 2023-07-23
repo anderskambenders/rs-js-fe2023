@@ -1,7 +1,8 @@
 import { createBtn } from '../buttons/button';
 import { EventEmitter } from '../event-emitter';
-import { CarsResponse, Car } from '../types/types';
+import { Car } from '../types/types';
 import { createCarSVG } from '../utils/carSVG';
+import { createCarApi, getCars } from '../api/api';
 
 export class Garage {
   private emitter: EventEmitter;
@@ -19,16 +20,21 @@ export class Garage {
     });
   }
 
-  draw(cars: CarsResponse) {
+  draw() {
     const garage = this.rootElem;
     const menu = this.generateMenu();
     const pageTitle = this.createPageTitle();
     const trackContainer = this.createElement('div', ['track__container']);
-    cars.items.forEach((item: Car): void => {
-      trackContainer.append(this.generateTrack(item));
-    });
+    this.generateTracks(trackContainer);
     garage.append(menu, pageTitle, trackContainer);
     return garage;
+  }
+
+  async generateTracks(container: HTMLElement) {
+    const cars = await getCars();
+    cars.items.forEach((item: Car): void => {
+      container.append(this.generateTrack(item));
+    });
   }
 
   generateMenu() {
@@ -36,7 +42,12 @@ export class Garage {
     const createCar = this.createElement('div', ['create_car']);
     const inputTextCreation = this.createElement('input', ['create_text'], 'create_text', 'text');
     const inputColorCreation = this.createElement('input', ['create_color'], 'create_color', 'color', '#FFF');
-    createCar.append(inputTextCreation, inputColorCreation, createBtn('create-btn', 'CREATE'));
+    const createButton = this.createElement('button', ['create_btn', 'button'], 'create_btn');
+    createButton.innerText = 'CREATE';
+    createButton.addEventListener('click', () => {
+      this.setCreateCarListener();
+    });
+    createCar.append(inputTextCreation, inputColorCreation, createButton);
     const updateCar = this.createElement('div', ['update_car']);
     const inputTextUpdate = this.createElement('input', ['update_text'], 'update_text', 'text');
     const inputColorUpdate = this.createElement('input', ['update_color'], 'update_color', 'color', '#FFF');
@@ -113,9 +124,18 @@ export class Garage {
     const finish: HTMLImageElement = document.createElement('img');
     finish.classList.add('finish');
     finish.src = './assets/finish.jpg';
-    finish.alt = 'checkered flag';
     finish.id = `finish-${value.id}`;
     return finish;
+  }
+
+  async setCreateCarListener() {
+    const carName: HTMLInputElement | null = document.querySelector('#create_text');
+    const carColor: HTMLInputElement | null = document.querySelector('#create_color');
+    if (carName && carColor) {
+      if (carName.value === '') return;
+      await createCarApi({ name: carName.value, color: carColor.value });
+      this.draw();
+    }
   }
 
   goToGaragePage() {
