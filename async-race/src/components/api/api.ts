@@ -1,4 +1,4 @@
-import { WinnerCar, Winner, CarModel } from '../types/types';
+import { WinnerCar, Winner, CarModel, Car, Body } from '../types/types';
 
 const base = 'http://localhost:3000';
 const garage = `${base}/garage`;
@@ -43,3 +43,14 @@ export const createCarApi = async (body: CarModel): Promise<CarModel> => {
   const car: CarModel = await response.json();
   return car;
 };
+
+export const updateCarApi = async (id: number, body: Body): Promise<Car> =>
+  (
+    await fetch(`${garage}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  ).json();

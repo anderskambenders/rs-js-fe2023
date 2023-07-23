@@ -1,8 +1,8 @@
 import { createBtn } from '../buttons/button';
 import { EventEmitter } from '../event-emitter';
-import { Car } from '../types/types';
+import { Car, Color } from '../types/types';
 import { createCarSVG } from '../utils/carSVG';
-import { createCarApi, getCars, getCar } from '../api/api';
+import { createCarApi, getCars, getCar, updateCarApi } from '../api/api';
 
 export class Garage {
   private emitter: EventEmitter;
@@ -24,7 +24,7 @@ export class Garage {
     const garage = this.rootElem;
     const menu = this.generateMenu();
     const pageTitle = this.createPageTitle();
-    const trackContainer = this.createElement('div', ['track__container']);
+    const trackContainer = this.createElement('div', ['track__container'], 'track_container');
     this.generateTracks(trackContainer);
     garage.append(menu, pageTitle, trackContainer);
     return garage;
@@ -51,7 +51,13 @@ export class Garage {
     const updateCar = this.createElement('div', ['update_car']);
     const inputTextUpdate = this.createElement('input', ['update_text'], 'update_text', 'text');
     const inputColorUpdate = this.createElement('input', ['update_color'], 'update_color', 'color', '#FFF');
-    updateCar.append(inputTextUpdate, inputColorUpdate, createBtn('update-btn', 'UPDATE'));
+    const updateButton = this.createElement('button', ['update_btn', 'button'], 'update_btn');
+    updateButton.innerText = 'UPDATE';
+    updateButton.addEventListener('click', () => {
+      this.setUpdateCarListener();
+      console.log('update');
+    });
+    updateCar.append(inputTextUpdate, inputColorUpdate, updateButton);
     const raceControls = this.createElement('div', ['race_control']);
     raceControls.append(
       createBtn('race', 'RACE'),
@@ -136,10 +142,12 @@ export class Garage {
   async setCreateCarListener() {
     const carName: HTMLInputElement | null = document.querySelector('#create_text');
     const carColor: HTMLInputElement | null = document.querySelector('#create_color');
+    const container = document.getElementById('track_container');
     if (carName && carColor) {
       if (carName.value === '') return;
       await createCarApi({ name: carName.value, color: carColor.value });
-      this.draw();
+      (container as HTMLElement).innerHTML = '';
+      this.generateTracks(container as HTMLElement);
     }
   }
 
@@ -148,11 +156,27 @@ export class Garage {
     // console.log(car);
     const textInput: HTMLInputElement | null = document.getElementById('update_text') as HTMLInputElement | null;
     const colorInput: HTMLInputElement | null = document.getElementById('update_color') as HTMLInputElement | null;
-    const updateBtn: HTMLButtonElement | null = document.getElementById('update-btn') as HTMLButtonElement | null;
+    const updateBtn: HTMLButtonElement | null = document.getElementById('update_btn') as HTMLButtonElement | null;
     (textInput as HTMLInputElement).value = car.name;
     (colorInput as HTMLInputElement).value = car.color;
     (updateBtn as HTMLButtonElement).value = `${carId}`;
     window.scrollTo(0, 0);
+  }
+
+  async setUpdateCarListener() {
+    const textInput = document.getElementById('update_text') as HTMLInputElement | null;
+    const colorInput = document.getElementById('update_color') as HTMLInputElement | null;
+    const updateBtn = document.getElementById('update_btn') as HTMLButtonElement | null;
+    const container = document.getElementById('track_container');
+    await updateCarApi(Number((updateBtn as HTMLButtonElement).value), {
+      name: textInput?.value as string,
+      color: colorInput?.value as Color,
+    });
+    (textInput as HTMLInputElement).value = '';
+    (colorInput as HTMLInputElement).value = '#FFFFFF';
+    (updateBtn as HTMLButtonElement).value = ``;
+    (container as HTMLElement).innerHTML = '';
+    this.generateTracks(container as HTMLElement);
   }
 
   goToGaragePage() {

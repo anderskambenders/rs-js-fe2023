@@ -33,3 +33,8 @@ export interface Winner {
 export interface WinnerCar extends Winner {
   car: Car;
 }
+
+export interface Body {
+  name: string;
+  color: Color;
+}
