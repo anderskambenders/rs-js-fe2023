@@ -1,6 +1,7 @@
 import { EventEmitter } from '../event-emitter';
 import { createCarSVG } from '../utils/carSVG';
-import { WinnerCar, WinnersResponse } from '../types/types';
+import { getWinners } from '../api/api';
+import { WinnerCar } from '../types/types';
 
 export class Winners {
   private emitter: EventEmitter;
@@ -16,14 +17,17 @@ export class Winners {
     this.emitter.subscribe('event:to-winners', () => {
       this.goToWinnersPage();
     });
+    this.emitter.subscribe('event:update-winners', () => {
+      this.updateWinners();
+    });
   }
 
-  draw(data: WinnersResponse) {
+  async draw() {
     const winners = this.rootElem;
     winners.classList.add('hidden');
     const pageTitle = this.createPageTitle();
     winners.append(pageTitle);
-    const table = this.generateTable(data);
+    const table = await this.generateTable();
     winners.append(table);
     return winners;
   }
@@ -56,7 +60,8 @@ export class Winners {
     return elem;
   }
 
-  generateTable(data: WinnersResponse) {
+  async generateTable() {
+    const data = await getWinners();
     const table = this.createTable();
     const tbody = this.createElement('tbody', ['t_body']);
     const tableHead = this.createTableHead();
@@ -127,6 +132,18 @@ export class Winners {
     td.classList.add('td');
     td.innerText = value;
     return td;
+  }
+
+  async updateWinners() {
+    const data = await getWinners();
+    const table = document.getElementById('table') as HTMLElement;
+    table.innerHTML = '';
+    const tbody = this.createElement('tbody', ['t_body']);
+    const tableHead = this.createTableHead();
+    table.append(tbody);
+    tbody.appendChild(tableHead);
+    data.items.forEach((item: WinnerCar, index: number): void => tbody.append(this.generateTableRow(item, index + 1)));
+    return table;
   }
 
   goToWinnersPage() {

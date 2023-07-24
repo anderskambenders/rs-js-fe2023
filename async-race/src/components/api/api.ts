@@ -14,15 +14,10 @@ export const getCars = async () => {
   };
 };
 
-const getSortOrder = (sort: string, order: string) => {
-  if (sort && sort) return `&_sort=${sort}&_order=${order}`;
-  return '';
-};
-
 export const getCar = async (id: number) => (await fetch(`${garage}/${id}`)).json();
 
-export const getWinners = async (page: number, sort: string, order: string, limit = 10) => {
-  const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSortOrder(sort, order)}`);
+export const getWinners = async () => {
+  const response = await fetch(`${winners}`);
   const items = await response.json();
 
   return {
@@ -72,3 +67,42 @@ export const driveApi = async (id: number) => {
   }).catch();
   return res.status !== 200 ? { success: false } : { ...(await res.json()) };
 };
+
+const createWinnerApi = async (body: Winner) =>
+  (
+    await fetch(winners, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  ).json();
+
+const updateWinnerApi = async (body: Winner) =>
+  (
+    await fetch(`${winners}/${body.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  ).json();
+
+export const saveWinnerApi = async (id: number, time: number) => {
+  const winnerStatus: number = (await fetch(`${winners}/${id}`)).status;
+  if (winnerStatus === 404) {
+    await createWinnerApi({
+      id,
+      wins: 1,
+      time,
+    });
+  } else {
+    const winner: Winner = (await fetch(`${winners}/${id}`)).json() as unknown as Winner;
+    await updateWinnerApi({ id, wins: winner.wins + 1, time: time < winner.time ? time : winner.time });
+  }
+};
+
+export const deleteWinnerApi = async (id: number): Promise<void> =>
+  (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();

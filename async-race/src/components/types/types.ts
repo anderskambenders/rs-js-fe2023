@@ -32,3 +32,9 @@ export interface Body {
   name: string;
   color: string;
 }
+
+export interface Results {
+  successStatus: boolean;
+  carId: number;
+  time: number;
+}
