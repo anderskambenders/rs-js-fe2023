@@ -14,6 +14,7 @@ import {
   deleteWinnerApi,
 } from '../api/api';
 import { Animation } from './animation';
+import { generateCars } from '../utils/generateCars';
 
 export class Garage {
   private emitter: EventEmitter;
@@ -78,7 +79,12 @@ export class Garage {
     raceBtn.addEventListener('click', (e) => {
       this.race(e);
     });
-    raceControls.append(raceBtn, createBtn('reset', 'RESET'), createBtn('generate-cars', 'GENERATE CARS'));
+    const generateCarsBtn = this.createElement('button', ['generate-cars', 'button'], 'generate-cars');
+    generateCarsBtn.innerText = 'GENERATE CARS';
+    generateCarsBtn.addEventListener('click', () => {
+      this.generate100Cars();
+    });
+    raceControls.append(raceBtn, createBtn('reset', 'RESET'), generateCarsBtn);
     menu.append(createCar, updateCar, raceControls);
     return menu;
   }
@@ -262,6 +268,13 @@ export class Garage {
       await saveWinnerApi(carId, time);
       this.emitter.emit('event:update-winners');
     });
+  }
+
+  async generate100Cars() {
+    const container = document.getElementById('track_container');
+    await generateCars();
+    (container as HTMLElement).innerHTML = '';
+    await this.generateTracks(container as HTMLElement);
   }
 
   goToGaragePage() {
