@@ -1,4 +1,3 @@
-export type SVGSizes = { width: `${number}px`; height: `${number}px` };
 export interface CarsResponse {
   items: Car[];
 }
@@ -13,11 +12,6 @@ export interface CarModel {
   name: string;
   color: string;
 }
-
-type RGB = `rgb(${number}, ${number}, ${number})`;
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
-type HEX = `#${string}`;
-export type Color = RGB | RGBA | HEX;
 
 export interface WinnersResponse {
   items: WinnerCar[];
@@ -36,5 +30,5 @@ export interface WinnerCar extends Winner {
 
 export interface Body {
   name: string;
-  color: Color;
+  color: string;
 }

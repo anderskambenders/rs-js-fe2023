@@ -3,6 +3,7 @@ import { WinnerCar, Winner, CarModel, Car, Body } from '../types/types';
 const base = 'http://localhost:3000';
 const garage = `${base}/garage`;
 const winners = `${base}/winners`;
+const engine = `${base}/engine`;
 
 export const getCars = async () => {
   const response = await fetch(`${garage}`);
@@ -55,5 +56,19 @@ export const updateCarApi = async (id: number, body: Body): Promise<Car> =>
     })
   ).json();
 
-export const deleteCarAPI = async (id: number): Promise<void> =>
+export const deleteCarApi = async (id: number): Promise<void> =>
   (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
+
+export const controlEngineApi = async (id: number, status: string) =>
+  (
+    await fetch(`${engine}?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    })
+  ).json();
+
+export const driveApi = async (id: number) => {
+  const res: Response = await fetch(`${engine}?id=${id}&status=drive`, {
+    method: 'PATCH',
+  }).catch();
+  return res.status !== 200 ? { success: false } : { ...(await res.json()) };
+};

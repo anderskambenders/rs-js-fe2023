@@ -1,6 +1,6 @@
-import { SVGSizes, Car } from '../types/types';
+import { Car } from '../types/types';
 
-export function createCarSVG(value: Car, sizes: SVGSizes) {
+export function createCarSVG(value: Car, sizes: { width: string; height: string }) {
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const XLINK_NS = 'http://www.w3.org/1999/xlink';
   const iconType: number = value.id % 4;

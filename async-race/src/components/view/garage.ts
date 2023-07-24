@@ -1,17 +1,21 @@
 import { createBtn } from '../buttons/button';
 import { EventEmitter } from '../event-emitter';
-import { Car, Color } from '../types/types';
+import { Car } from '../types/types';
 import { createCarSVG } from '../utils/carSVG';
-import { createCarApi, getCars, getCar, updateCarApi, deleteCarAPI } from '../api/api';
+import { createCarApi, getCars, getCar, updateCarApi, deleteCarApi, controlEngineApi, driveApi } from '../api/api';
+import { Animation } from './animation';
 
 export class Garage {
   private emitter: EventEmitter;
 
   private rootElem: HTMLElement;
 
+  private Animation: Animation;
+
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
     this.rootElem = this.createElement('section', ['garage'], 'garage');
+    this.Animation = new Animation();
     this.emitter.subscribe('event:to-garage', () => {
       this.goToGaragePage();
     });
@@ -54,7 +58,7 @@ export class Garage {
     const updateButton = this.createElement('button', ['update_btn', 'button'], 'update_btn');
     updateButton.innerText = 'UPDATE';
     updateButton.addEventListener('click', () => {
-      this.setUpdateCarListener();
+      this.updateCarListener();
       console.log('update');
     });
     updateCar.append(inputTextUpdate, inputColorUpdate, updateButton);
@@ -100,6 +104,33 @@ export class Garage {
     const track = this.createElement('div', ['track']);
     const controlsContainer = this.createElement('div', ['controls_container']);
     const carManipulation = this.createElement('div', ['car_manipulation']);
+    carManipulation.append(...this.generateCarManipulations(car));
+    const engineControl = this.createElement('div', ['engine_control']);
+    const btnStart = this.createElement('button', ['button', 'start'], 'start');
+    (btnStart as HTMLButtonElement).value = car.id.toString();
+    btnStart.innerText = 'Start';
+    btnStart.addEventListener('click', (e) => {
+      this.drive(e);
+    });
+    const btnStop = this.createElement('button', ['button', 'stop']);
+    (btnStop as HTMLButtonElement).value = car.id.toString();
+    btnStop.innerText = 'Stop';
+    btnStop.addEventListener('click', (e) => {
+      this.drive(e);
+    });
+    engineControl.append(btnStart, btnStop);
+    const carName = this.createElement('p', ['car_name']);
+    carName.innerText = car.name;
+    controlsContainer.append(carManipulation, engineControl, carName);
+    const trackLayout = this.createElement('div', ['track_layout']);
+    const svg: SVGSVGElement = createCarSVG(car, { width: `${150}px`, height: `${60}px` });
+    const finish = this.createFinish(car);
+    trackLayout.append(svg, finish);
+    track.append(controlsContainer, trackLayout);
+    return track;
+  }
+
+  generateCarManipulations(car: Car) {
     const btnSelect = this.createElement('button', ['button', 'select']);
     (btnSelect as HTMLButtonElement).value = car.id.toString();
     btnSelect.innerText = 'Select';
@@ -115,24 +146,7 @@ export class Garage {
       const carId = (e.target as HTMLButtonElement).value;
       this.removeListener(+carId);
     });
-    carManipulation.append(btnSelect, btnRemove);
-    const engineControl = this.createElement('div', ['engine_control']);
-    const btnStart = this.createElement('button', ['button', 'start']);
-    (btnStart as HTMLButtonElement).value = car.id.toString();
-    btnStart.innerText = 'Start';
-    const btnStop = this.createElement('button', ['button', 'stop']);
-    (btnStop as HTMLButtonElement).value = car.id.toString();
-    btnStop.innerText = 'Stop';
-    engineControl.append(btnStart, btnStop);
-    const carName = this.createElement('p', ['car_name']);
-    carName.innerText = car.name;
-    controlsContainer.append(carManipulation, engineControl, carName);
-    const trackLayout = this.createElement('div', ['track_layout']);
-    const svg: SVGSVGElement = createCarSVG(car, { width: `${150}px`, height: `${60}px` });
-    const finish = this.createFinish(car);
-    trackLayout.append(svg, finish);
-    track.append(controlsContainer, trackLayout);
-    return track;
+    return [btnSelect, btnRemove];
   }
 
   createFinish(value: Car) {
@@ -157,7 +171,6 @@ export class Garage {
 
   async selectListener(carId: number) {
     const car: Car = await getCar(carId);
-    // console.log(car);
     const textInput: HTMLInputElement | null = document.getElementById('update_text') as HTMLInputElement | null;
     const colorInput: HTMLInputElement | null = document.getElementById('update_color') as HTMLInputElement | null;
     const updateBtn: HTMLButtonElement | null = document.getElementById('update_btn') as HTMLButtonElement | null;
@@ -167,14 +180,14 @@ export class Garage {
     window.scrollTo(0, 0);
   }
 
-  async setUpdateCarListener() {
+  async updateCarListener() {
     const textInput = document.getElementById('update_text') as HTMLInputElement | null;
     const colorInput = document.getElementById('update_color') as HTMLInputElement | null;
     const updateBtn = document.getElementById('update_btn') as HTMLButtonElement | null;
     const container = document.getElementById('track_container');
     await updateCarApi(Number((updateBtn as HTMLButtonElement).value), {
       name: textInput?.value as string,
-      color: colorInput?.value as Color,
+      color: colorInput?.value as string,
     });
     (textInput as HTMLInputElement).value = '';
     (colorInput as HTMLInputElement).value = '#FFFFFF';
@@ -185,9 +198,37 @@ export class Garage {
 
   async removeListener(carId: number) {
     const container = document.getElementById('track_container');
-    await deleteCarAPI(carId);
+    await deleteCarApi(carId);
     (container as HTMLElement).innerHTML = '';
     await this.generateTracks(container as HTMLElement);
+  }
+
+  async drive(event: Event) {
+    const { target } = event;
+    const carId = +(event.target as HTMLButtonElement).value;
+    let status: string;
+    if ((target as HTMLButtonElement).classList.contains('start')) {
+      status = 'started';
+      (target as HTMLButtonElement).classList.toggle('disabled');
+      (target as HTMLButtonElement).nextElementSibling?.classList.toggle('disabled');
+    } else {
+      status = 'stopped';
+      (target as HTMLButtonElement).classList.toggle('disabled');
+      (target as HTMLButtonElement).previousElementSibling?.classList.toggle('disabled');
+    }
+    const responseEngine = await controlEngineApi(carId, status);
+    if (status === 'started') {
+      this.Animation.animate(carId, responseEngine);
+      this.Animation.stoppedAnimations.delete(carId);
+      const { success } = await driveApi(carId);
+
+      if (!success && !this.Animation.stoppedAnimations.has(carId)) {
+        window.cancelAnimationFrame(this.Animation.requestId.get(carId) as number);
+      }
+    } else {
+      this.Animation.animate(carId, responseEngine);
+      this.Animation.stoppedAnimations.set(carId, carId);
+    }
   }
 
   goToGaragePage() {

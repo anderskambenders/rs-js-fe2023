@@ -28,6 +28,6 @@ export class App {
 
   async start() {
     const winnersResponse = await getWinners(1, sort, order);
-    this.body?.append(this.navigation.draw(), await this.garage.draw(), this.winners.draw(winnersResponse));
+    this.body?.append(this.navigation.draw(), this.garage.draw(), this.winners.draw(winnersResponse));
   }
 }
