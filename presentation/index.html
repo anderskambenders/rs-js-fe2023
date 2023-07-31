@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reveal/reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal/reveal.js/dist/theme/dracula.css" id="theme">
+  <link rel="stylesheet" href="style.css">
+  <title>Presentation</title>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+        <h3>Turing machine and Turing completeness</h3>
+        <br>
+        <ul>
+          <p> Main topics: </p>
+          <li>Who is Alan Turing</li>
+          <li>Turing machine: description and purpose</li>
+          <li>Turing completeness of system: definition and meaning</li>
+          <li>Examples of Turing-complete systems </li>
+        </ul>
+      </section>
+			<section>
+        <div class="slide2">
+          <p class="slide2__text">Alan Turing was a British mathematician, logician, and computer scientist who is widely regarded as the father of modern computer science. </p>
+          <img class="slide2__img" src="assets/f86fc26c86b444c391fb412bb3dcec76-superJumbo.webp" alt="Turing">
+        </div>
+        <p>
+          The most famous Turing inventions:</p>
+        <ol class="slide2__ol">
+          <li>During World War II helped crack the Enigma code used by the Germans</li>
+          <li>Invented an abstract computer that formalized the definition of an algorithm</li>
+          <li>Designed the first computer with a stored program in memory</li>
+          <li>Theoretical works on artificial intelligence and the Turing test</li>
+        </ol>
+      </section>
+      <section>
+        <h4>Turing machine</h4>
+        <p>Turing machine is a theoretical device that can simulate any algorithmic computation. </p>
+        <ol class="slide3__ol">
+          <li>The Turing machine begins with an infinite tape divided into cells, each containing a symbol from a finite set.</li>
+            <li>The machine has a read/write head that can move along the tape and read the symbol in the current cell.</li>
+            <li>At any given moment, the Turing machine is in a certain state.</li>
+            <li>The machine reads the symbol under the head and, based on the current state and symbol, performs a specific action.</li>
+            <li>This action can involve writing a new symbol on the tape, moving the head one cell to the left or right, or changing its state.</li>
+            <li> The behavior of the Turing machine is determined by its transition function, which maps each combination of current state and symbol to the next state and action to be performed.</li>
+            <li>The Turing machine starts in an initial state and continues to execute its actions until it reaches a halting state.</li>
+        </ol>
+        <p class="slide3__desc">Turing machines are considered universal computers as they can simulate any other computer algorithm.</p>
+      </section>
+      <section>
+        <h4>Turing completeness</h4>
+        <p>Turing completeness is a property of a computational system that can simulate a Turing machine. A computational system is considered Turing complete if it can perform any computation that a Turing machine can, given enough time and resources.</p>
+      </section>
+      <section>
+        <h4>Criteria of Turing completeness</h4>
+        <ol>
+          <li>Universal instruction set</li>
+          <li>Infinite memory</li>
+          <li>Conditional branching</li>
+          <li>Loops or recursion</li>
+        </ol>
+        <p>Any Turing-complete system can be hacked or exploited because it has the ability to perform any computation that a Turing machine can. This means that it can execute any algorithm, including those that may be malicious or designed to gain unauthorized access to a system.</p>
+      </section>
+      <section>
+        <h4>Examples of Turing-complete systems</h4>
+        <ul>
+          <li>Almost all programming languages(exception:  FRACTRAN, Malbolge)</li>
+          <li>Some games(Dwarf Fortress3, Starcraft, Minecraft, Magic: the Gathering etc.)</li>
+          <li>CSS, SQL,Microsoft PowerPoint Animations</li>
+          <p> and many others...</p>
+        </ul>
+      </section>
+      <section>
+        <h4>Thanks for attention</h4>
+      </section>
+		</div>
+	</div>
+	<script src="reveal/reveal.js/dist/reveal.js"></script>
+	<script >
+    Reveal.initialize()
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.slide2 {
+  display: flex;
+}
+.slide2__img {
+  width: 200px;
+  height: auto;
+}
+.slide2__ol {
+  font-size: 23px;
+}
+
+.slide3__ol {
+  font-size: 20px;
+}
+
+.slide3__desc {
+  font-size: 30px;
+}
