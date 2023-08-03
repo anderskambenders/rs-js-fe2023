@@ -1,8 +1,8 @@
-type CallbackFn<T = unknown> = (data: T) => void;
+import { CallbackFn } from '../types/types';
 
-export function createBtn(id: string, text: string, style = 'button', listener?: CallbackFn) {
+export function createBtn(id: string, text: string, style?: string, listener?: CallbackFn) {
   const btn: HTMLButtonElement = document.createElement('button');
-  btn.classList.add(style);
+  btn.classList.add(style as string);
   btn.id = id;
   btn.innerText = text;
   if (listener) {

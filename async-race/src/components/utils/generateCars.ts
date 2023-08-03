@@ -9,16 +9,17 @@ function generateRandomCarName() {
 
 function generateRandomColor() {
   const hexArr = '01234567890ABCDEF'.split('');
-  const red = hexArr.sort(() => Math.random() - 0.5).slice(0, 2);
-  const green = hexArr.sort(() => Math.random() - 0.5).slice(0, 2);
-  const blue = hexArr.sort(() => Math.random() - 0.5).slice(0, 2);
-  const color = red.join('') + green.join('') + blue.join('');
+  const getRandomHexPart = (arr: string[]) => arr.sort(() => Math.random() - 0.5).slice(0, 2);
+  let color = '';
+  for (let i = 0; i < 3; i += 1) {
+    color += getRandomHexPart(hexArr).join('');
+  }
   return `#${color}`;
 }
 
-export async function generateCars() {
+export async function generateCars(carsCount: number) {
   const carsArr = [];
-  for (let i = 0; i < 100; i += 1) {
+  for (let i = 0; i < carsCount; i += 1) {
     carsArr.push(createCarApi({ name: generateRandomCarName(), color: generateRandomColor() }));
   }
   return Promise.all(carsArr);

@@ -21,19 +21,7 @@ const baseConfig = {
       {
         test: /\.(png|gif|jpg|jpeg|ico)$/,
         type: 'asset/resource',
-        // generator: {
-        //   filename: '../../assets/img/[name][ext]',
-        // },
       },
-
-      // {
-      //   test: /\.(png|jpe?g|gif|svg)$/i,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //     },
-      //   ],
-      // },
     ],
   },
   resolve: {
@@ -44,10 +32,6 @@ const baseConfig = {
     path: path.resolve(__dirname, 'dist/async-race/src'),
     assetModuleFilename: '../../assets/img/[name][ext]',
   },
-  // output: {
-  //   filename: 'index.js',
-  //   path: path.resolve(__dirname, './dist'),
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
@@ -56,10 +40,7 @@ const baseConfig = {
     }),
     new EslintPlugin({ extensions: 'ts' }),
     new CopyPlugin({
-      patterns: [
-        { from: './src/assets', to: './assets' },
-        // { from: './src/db', to: './../dist/db' },
-      ],
+      patterns: [{ from: './src/assets', to: './assets' }],
     }),
   ],
 };

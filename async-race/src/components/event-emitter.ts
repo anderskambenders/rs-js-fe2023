@@ -1,4 +1,5 @@
-type CallbackFn<T = unknown> = (data: T) => void;
+import { CallbackFn } from './types/types';
+
 type EventsType = Record<string, Array<CallbackFn>>;
 
 export class EventEmitter {

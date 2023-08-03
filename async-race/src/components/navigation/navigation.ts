@@ -10,12 +10,10 @@ export class Navigation {
 
   draw() {
     const menu = this.create();
-    const garageBtn = createBtn('nav_garage', 'Garage');
-    garageBtn.addEventListener('click', () => {
+    const garageBtn = createBtn('nav_garage', 'Garage', 'button', () => {
       this.emitter.emit('event:to-garage');
     });
-    const winnersBtn = createBtn('nav_winners', 'Winners');
-    winnersBtn.addEventListener('click', () => {
+    const winnersBtn = createBtn('nav_winners', 'Winners', 'button', () => {
       this.emitter.emit('event:to-winners');
     });
     menu.append(garageBtn, winnersBtn);

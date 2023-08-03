@@ -2,6 +2,7 @@ import { EventEmitter } from '../event-emitter';
 import { createCarSVG } from '../utils/carSVG';
 import { getWinners } from '../api/api';
 import { WinnerCar } from '../types/types';
+import { createElement } from '../utils/createElement';
 
 export class Winners {
   private emitter: EventEmitter;
@@ -10,7 +11,7 @@ export class Winners {
 
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
-    this.rootElem = this.createElement('div', ['winners']);
+    this.rootElem = createElement({ tag: 'div', style: ['winners'] });
     this.emitter.subscribe('event:to-garage', () => {
       this.goOutOfWinnersPage();
     });
@@ -38,10 +39,8 @@ export class Winners {
       pageTitle = document.createElement('h2');
       pageTitle.classList.add('page__title_winners');
       pageTitle.id = `page__title_winners`;
-      pageTitle.innerText = `Winners [page ${value}]`;
-    } else {
-      pageTitle.innerText = `Winners [page ${value}]`;
     }
+    pageTitle.innerText = `Winners [page ${value}]`;
     return pageTitle;
   }
 
@@ -63,7 +62,7 @@ export class Winners {
   async generateTable() {
     const data = await getWinners();
     const table = this.createTable();
-    const tbody = this.createElement('tbody', ['t_body']);
+    const tbody = createElement({ tag: 'tbody', style: ['t_body'] });
     const tableHead = this.createTableHead();
     table.append(tbody);
     tbody.appendChild(tableHead);
@@ -73,12 +72,10 @@ export class Winners {
 
   createTable() {
     let table = document.getElementById('table');
-    if (!table) {
-      table = document.createElement('table');
-    } else {
-      table.remove();
-      table = document.createElement('table');
+    if (table) {
+      (table as HTMLElement).remove();
     }
+    table = document.createElement('table');
     table.classList.add('table');
     table.id = 'table';
     return table;
@@ -114,7 +111,6 @@ export class Winners {
   }
 
   generateTableRow(value: WinnerCar, position: number) {
-    console.log(value);
     const number = this.createTD(`${position}`);
     const SVG = createCarSVG(value.car, { width: `${50}px`, height: `${30}px` });
     const car = this.createTD('');
@@ -138,7 +134,7 @@ export class Winners {
     const data = await getWinners();
     const table = document.getElementById('table') as HTMLElement;
     table.innerHTML = '';
-    const tbody = this.createElement('tbody', ['t_body']);
+    const tbody = createElement({ tag: 'tbody', style: ['t_body'] });
     const tableHead = this.createTableHead();
     table.append(tbody);
     tbody.appendChild(tableHead);

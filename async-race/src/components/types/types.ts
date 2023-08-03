@@ -8,6 +8,8 @@ export interface Car {
   id: number;
 }
 
+export type CallbackFn<T = unknown> = (data: T) => void;
+
 export interface CarModel {
   name: string;
   color: string;

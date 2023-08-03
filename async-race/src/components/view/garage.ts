@@ -7,7 +7,7 @@ import {
   getCars,
   getCar,
   updateCarApi,
-  deleteCarApi,
+  requestCarDelete,
   controlEngineApi,
   driveApi,
   saveWinnerApi,
@@ -15,18 +15,19 @@ import {
 } from '../api/api';
 import { Animation } from './animation';
 import { generateCars } from '../utils/generateCars';
+import { createElement } from '../utils/createElement';
 
 export class Garage {
   private emitter: EventEmitter;
 
   private rootElem: HTMLElement;
 
-  private Animation: Animation;
+  private animation: Animation;
 
   constructor(emitter: EventEmitter) {
     this.emitter = emitter;
-    this.rootElem = this.createElement('section', ['garage'], 'garage');
-    this.Animation = new Animation();
+    this.rootElem = createElement({ tag: 'section', style: ['garage'], id: 'garage' });
+    this.animation = new Animation();
     this.emitter.subscribe('event:to-garage', () => {
       this.goToGaragePage();
     });
@@ -39,7 +40,7 @@ export class Garage {
     const garage = this.rootElem;
     const menu = this.generateMenu();
     const pageTitle = this.createPageTitle();
-    const trackContainer = this.createElement('div', ['track__container'], 'track_container');
+    const trackContainer = createElement({ tag: 'div', style: ['track__container'], id: 'track_container' });
     this.generateTracks(trackContainer);
     garage.append(menu, pageTitle, trackContainer);
     return garage;
@@ -53,40 +54,79 @@ export class Garage {
   }
 
   generateMenu() {
-    const menu = this.createElement('div', ['menu']);
-    const createCar = this.createElement('div', ['create_car']);
-    const inputTextCreation = this.createElement('input', ['create_text'], 'create_text', 'text');
-    const inputColorCreation = this.createElement('input', ['create_color'], 'create_color', 'color', '#FFF');
-    const createButton = this.createElement('button', ['create_btn', 'button'], 'create_btn');
-    createButton.innerText = 'CREATE';
-    createButton.addEventListener('click', () => {
-      this.setCreateCarListener();
-    });
-    createCar.append(inputTextCreation, inputColorCreation, createButton);
-    const updateCar = this.createElement('div', ['update_car']);
-    const inputTextUpdate = this.createElement('input', ['update_text'], 'update_text', 'text');
-    const inputColorUpdate = this.createElement('input', ['update_color'], 'update_color', 'color', '#FFF');
-    const updateButton = this.createElement('button', ['update_btn', 'button'], 'update_btn');
-    updateButton.innerText = 'UPDATE';
-    updateButton.addEventListener('click', () => {
-      this.updateCarListener();
-      console.log('update');
-    });
-    updateCar.append(inputTextUpdate, inputColorUpdate, updateButton);
-    const raceControls = this.createElement('div', ['race_control']);
-    const raceBtn = this.createElement('button', ['race', 'button'], 'race');
+    const menu = createElement({ tag: 'div', style: ['menu'] });
+    const createCar = this.createCar();
+    const updateCar = this.updateCar();
+    const raceControls = createElement({ tag: 'div', style: ['race_control'] });
+    const raceBtn = createElement({ tag: 'button', style: ['race', 'button'], id: 'race' });
     raceBtn.innerText = 'RACE';
     raceBtn.addEventListener('click', (e) => {
       this.race(e);
     });
-    const generateCarsBtn = this.createElement('button', ['generate-cars', 'button'], 'generate-cars');
+    const generateCarsBtn = createElement({
+      tag: 'button',
+      style: ['generate-cars', 'button'],
+      id: 'generate-cars',
+    });
     generateCarsBtn.innerText = 'GENERATE CARS';
     generateCarsBtn.addEventListener('click', () => {
-      this.generate100Cars();
+      this.generateCars();
     });
-    raceControls.append(raceBtn, createBtn('reset', 'RESET'), generateCarsBtn);
+    raceControls.append(raceBtn, createBtn('reset', 'RESET', 'button'), generateCarsBtn);
     menu.append(createCar, updateCar, raceControls);
     return menu;
+  }
+
+  createCar() {
+    const createCar = createElement({ tag: 'div', style: ['create_car'] });
+    const inputTextCreation = createElement({
+      tag: 'input',
+      style: ['create_text'],
+      id: 'create_text',
+      type: 'text',
+    });
+    const inputColorCreation = createElement({
+      tag: 'input',
+      style: ['create_color'],
+      id: 'create_color',
+      type: 'color',
+      value: '#FFF',
+    });
+    const createButton = createElement({
+      tag: 'button',
+      style: ['create_btn', 'button'],
+      id: 'create_btn',
+      listener: this.setCreateCarListener.bind(this),
+    });
+    createButton.innerText = 'CREATE';
+    createCar.append(inputTextCreation, inputColorCreation, createButton);
+    return createCar;
+  }
+
+  updateCar() {
+    const updateCar = createElement({ tag: 'div', style: ['update_car'] });
+    const inputTextUpdate = createElement({
+      tag: 'input',
+      style: ['update_text'],
+      id: 'update_text',
+      type: 'text',
+    });
+    const inputColorUpdate = createElement({
+      tag: 'input',
+      style: ['update_color'],
+      id: 'update_color',
+      type: 'color',
+      value: '#FFF',
+    });
+    const updateButton = createElement({
+      tag: 'button',
+      style: ['update_btn', 'button'],
+      id: 'update_btn',
+      listener: this.updateCarListener.bind(this),
+    });
+    updateButton.innerText = 'UPDATE';
+    updateCar.append(inputTextUpdate, inputColorUpdate, updateButton);
+    return updateCar;
   }
 
   createPageTitle(value = 1) {
@@ -95,51 +135,44 @@ export class Garage {
       pageTitle = document.createElement('h2');
       pageTitle.classList.add('page__title_garage');
       pageTitle.id = `page__title_garage`;
-      pageTitle.innerText = `Garage [page ${value}]`;
-    } else {
-      pageTitle.innerText = `Garage [page ${value}]`;
     }
+    pageTitle.innerText = `Garage [page ${value}]`;
     return pageTitle;
   }
 
-  createElement(tag: string, style: string[], id?: string, type?: string, value?: string) {
-    const elem = document.createElement(tag);
-    elem.classList.add(...style);
-    if (id) {
-      elem.id = id;
-    }
-    if (type) {
-      (elem as HTMLInputElement).type = type;
-    }
-    if (value) {
-      (elem as HTMLInputElement).value = value;
-    }
-    return elem;
-  }
-
   generateTrack(car: Car) {
-    const track = this.createElement('div', ['track']);
-    const controlsContainer = this.createElement('div', ['controls_container']);
-    const carManipulation = this.createElement('div', ['car_manipulation']);
+    const track = createElement({ tag: 'div', style: ['track'] });
+    const controlsContainer = createElement({ tag: 'div', style: ['controls_container'] });
+    const carManipulation = createElement({ tag: 'div', style: ['car_manipulation'] });
     carManipulation.append(...this.generateCarManipulations(car));
-    const engineControl = this.createElement('div', ['engine_control']);
-    const btnStart = this.createElement('button', ['button', 'start'], 'start');
+    const engineControl = createElement({ tag: 'div', style: ['engine_control'] });
+    const btnStart = createElement({
+      tag: 'button',
+      style: ['button', 'start'],
+      id: 'start',
+      listener: (e) => {
+        this.drive((e as Event).target as HTMLButtonElement);
+      },
+    });
     (btnStart as HTMLButtonElement).value = car.id.toString();
     btnStart.innerText = 'Start';
-    btnStart.addEventListener('click', (e) => {
-      this.drive(e.target as HTMLButtonElement);
+    const btnStop = createElement({
+      tag: 'button',
+      style: ['button', 'stop'],
+      listener: (e) => {
+        this.drive((e as Event).target as HTMLButtonElement);
+      },
     });
-    const btnStop = this.createElement('button', ['button', 'stop']);
     (btnStop as HTMLButtonElement).value = car.id.toString();
     btnStop.innerText = 'Stop';
     btnStop.addEventListener('click', (e) => {
       this.drive(e.target as HTMLButtonElement);
     });
     engineControl.append(btnStart, btnStop);
-    const carName = this.createElement('p', ['car_name']);
+    const carName = createElement({ tag: 'p', style: ['car_name'] });
     carName.innerText = car.name;
     controlsContainer.append(carManipulation, engineControl, carName);
-    const trackLayout = this.createElement('div', ['track_layout']);
+    const trackLayout = createElement({ tag: 'div', style: ['track_layout'] });
     const svg: SVGSVGElement = createCarSVG(car, { width: `${150}px`, height: `${60}px` });
     const finish = this.createFinish(car);
     trackLayout.append(svg, finish);
@@ -148,20 +181,27 @@ export class Garage {
   }
 
   generateCarManipulations(car: Car) {
-    const btnSelect = this.createElement('button', ['button', 'select']);
-    (btnSelect as HTMLButtonElement).value = car.id.toString();
+    const btnSelect = createElement({
+      tag: 'button',
+      style: ['button', 'select'],
+      value: car.id.toString(),
+      listener: (e) => {
+        const carId = ((e as Event).target as HTMLButtonElement).value;
+        this.selectListener(+carId);
+      },
+    });
+
     btnSelect.innerText = 'Select';
-    btnSelect.addEventListener('click', (e) => {
-      const carId = (e.target as HTMLButtonElement).value;
-      this.selectListener(+carId);
+    const btnRemove = createElement({
+      tag: 'button',
+      style: ['button', 'remove'],
+      value: car.id.toString(),
+      listener: (e) => {
+        const carId = ((e as Event).target as HTMLButtonElement).value;
+        this.removeListener(+carId);
+      },
     });
-    const btnRemove = this.createElement('button', ['button', 'remove']);
-    (btnRemove as HTMLButtonElement).value = car.id.toString();
     btnRemove.innerText = 'Remove';
-    btnRemove.addEventListener('click', (e) => {
-      const carId = (e.target as HTMLButtonElement).value;
-      this.removeListener(+carId);
-    });
     return [btnSelect, btnRemove];
   }
 
@@ -214,7 +254,7 @@ export class Garage {
 
   async removeListener(carId: number) {
     const container = document.getElementById('track_container');
-    await deleteCarApi(carId);
+    await requestCarDelete(carId);
     await deleteWinnerApi(carId);
     (container as HTMLElement).innerHTML = '';
     await this.generateTracks(container as HTMLElement);
@@ -237,18 +277,18 @@ export class Garage {
     const responseEngine = await controlEngineApi(carId, status);
     const time: number = Math.round(responseEngine.distance / responseEngine.velocity) / 1000;
     if (status === 'started') {
-      this.Animation.animate(carId, responseEngine);
-      this.Animation.stoppedAnimations.delete(carId);
+      this.animation.animate(carId, responseEngine);
+      this.animation.stoppedAnimations.delete(carId);
       const { success } = await driveApi(carId);
-      if (!success && !this.Animation.stoppedAnimations.has(carId)) {
-        window.cancelAnimationFrame(this.Animation.requestId.get(carId) as number);
+      if (!success && !this.animation.stoppedAnimations.has(carId)) {
+        window.cancelAnimationFrame(this.animation.requestId.get(carId) as number);
       }
       if (success) {
         successStatus = success;
       }
     } else {
-      this.Animation.animate(carId, responseEngine);
-      this.Animation.stoppedAnimations.set(carId, carId);
+      this.animation.animate(carId, responseEngine);
+      this.animation.stoppedAnimations.set(carId, carId);
     }
     return { successStatus, carId, time } as Results;
   }
@@ -259,7 +299,7 @@ export class Garage {
     (container as HTMLElement).innerHTML = '';
     await this.generateTracks(container as HTMLElement);
     const members = document.querySelectorAll('.start');
-    const promises = Array.from(members).map(async (member) => {
+    const promises = Array.from(members).map((member) => {
       return this.drive(member as HTMLButtonElement);
     });
     Promise.any(promises).then(async (data: Results | undefined) => {
@@ -270,9 +310,10 @@ export class Garage {
     });
   }
 
-  async generate100Cars() {
+  async generateCars() {
+    const carsCount = 100;
     const container = document.getElementById('track_container');
-    await generateCars();
+    await generateCars(carsCount);
     (container as HTMLElement).innerHTML = '';
     await this.generateTracks(container as HTMLElement);
   }
